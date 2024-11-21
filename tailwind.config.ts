@@ -9,6 +9,7 @@ export default {
   theme: {
     extend: {
       colors: {
+        brand: "rgb(171, 33, 31)",
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
