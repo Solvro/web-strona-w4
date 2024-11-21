@@ -1,5 +1,7 @@
-import { Navbar } from "@/components/Navbar";
 import Link from "next/link";
+
+import { Navbar } from "@/components/navbar";
+import { SeminarShortcut } from "./seminar-shortcut";
 
 export default function Home() {
   // temporary static data, to be fetched from an API
@@ -54,12 +56,31 @@ export default function Home() {
     { firstName: "Jerzy", lastName: "Kotowski", titlePrefix: "dr inż.", isActive: true },
   ];
 
+  const seminars = [
+    {
+      title: "Seminarium 1",
+      date: new Date("2024-12-01T12:00"),
+    },
+    {
+      title: "Seminarium 2",
+      date: new Date("2024-12-01T12:00"),
+    },
+    {
+      title: "Seminarium 3",
+      date: new Date("2024-12-01T12:00"),
+    },
+    {
+      title: "Seminarium 4",
+      date: new Date("2024-12-01T12:00"),
+    },
+  ];
+
   return (
     <>
       <Navbar />
 
       <main>
-        <div className="max-w-screen-lg mx-auto w-full px-4 mt-12 grid md:grid-cols-2">
+        <div className="max-w-screen-lg mx-auto w-full px-4 mt-12 grid gap-8 md:grid-cols-2">
           <div>
             <h1 className="text-4xl font-black text-brand">Pracownia Systemów Cyberfizycznych</h1>
             <p className="mt-3">
@@ -67,9 +88,28 @@ export default function Home() {
               necessitatibus deserunt tempora voluptate possimus sapiente commodi asperiores
               similique, aspernatur iusto earum, pariatur quis dolores id porro.
             </p>
+
+            {seminars.length > 0 && (
+              <div>
+                <h2 className="mt-8 text-2xl font-bold text-brand">Nadchodzące seminaria</h2>
+                <div className="space-y-1 mt-1">
+                  {seminars.slice(0, 3).map((seminar, i) => (
+                    <SeminarShortcut seminar={seminar} key={i} />
+                  ))}
+                </div>
+                {seminars.length > 3 && (
+                  <Link
+                    href="/seminaria"
+                    className="text-stone-600 text-sm mt-2 mx-auto w-max underline decoration-dotted hover:text-brand block text-center font-light"
+                  >
+                    zobacz wszystkie seminaria
+                  </Link>
+                )}
+              </div>
+            )}
           </div>
 
-          <div className="mt-12 md:mt-0 grid grid-cols-4 sm:grid-cols-5 md:grid-cols-3 lg:grid-cols-4">
+          <div className="mt-4 md:mt-0 grid grid-cols-[repeat(auto-fit,minmax(125px,1fr))]">
             {professors.map((professor, i) => (
               <Link
                 href={`/professor/${professor.firstName}-${professor.lastName}`}
