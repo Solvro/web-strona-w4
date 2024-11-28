@@ -1,7 +1,9 @@
-import { ChevronLeftIcon } from "@heroicons/react/16/solid";
-
 import { Navbar } from "@/components/navbar";
+import { Event } from "@/types";
+
 import { AcademicTitlesOrder, getGeneralAcademicTitle } from "./titles-sorter";
+import { Seminars } from "./seminars";
+import { Events } from "./events";
 
 // temporary static data, to be fetched from an API
 const professors = [
@@ -10,12 +12,16 @@ const professors = [
     lastName: "Klempous",
     titlePrefix: "dr hab. inż.",
     titleSuffix: "prof. ucz.",
+    image:
+      "https://0.academia-photos.com/50234834/16584101/16901902/s200_ryszard.klempous.jpg",
     isActive: true,
   },
   {
     firstName: "Konrad",
     lastName: "Kluwak",
     titlePrefix: "dr inż.",
+    image:
+      "https://i1.wp.com/konrad.kluwak.staff.iiar.pwr.edu.pl/wp-content/uploads/2019/04/IMG_6208-1.jpg?w=1050",
     isActive: true,
   },
   {
@@ -23,12 +29,15 @@ const professors = [
     lastName: "Mzyk",
     titlePrefix: "dr hab. inż.",
     titleSuffix: "prof. ucz.",
+    image: "http://staff.iiar.pwr.wroc.pl/grzegorz.mzyk/gmusa.jpg",
     isActive: true,
   },
   {
     firstName: "Ewa",
     lastName: "Szlachcic",
     titlePrefix: "dr inż.",
+    image:
+      "http://ewa.szlachcic.staff.iiar.pwr.wroc.pl/index_pliki/image003.jpg",
     isActive: true,
   },
   {
@@ -36,6 +45,8 @@ const professors = [
     lastName: "Śliwiński",
     titlePrefix: "dr hab. inż.",
     titleSuffix: "prof. ucz.",
+    image:
+      "http://diuna.ict.pwr.wroc.pl/sliwinski/Przemysław%20Śliwiński%20-%20Official%20Home%20Page_pliki/sliwinski-72dpi.jpg",
     isActive: true,
   },
   {
@@ -43,7 +54,7 @@ const professors = [
     lastName: "Wachel",
     titlePrefix: "dr hab. inż.",
     titleSuffix: "prof. ucz.",
-    role: "Kierownik Pracowni",
+    image: "http://pawel.wachel.staff.iiar.pwr.wroc.pl/images/img0006.jpg",
     isActive: true,
   },
   {
@@ -57,6 +68,7 @@ const professors = [
     lastName: "Greblicki",
     titlePrefix: "prof. dr hab. inż.",
     titleSuffix: "Professor Emeritus",
+    image: "http://diuna.iiar.pwr.edu.pl/greblicki/ICONS/wgre.jpg",
     isActive: false,
   },
   {
@@ -80,24 +92,39 @@ const professors = [
   },
 ];
 
-const seminars = [
+const seminars: Event[] = [
   {
     title: "Seminarium 1",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias natus quos minus esse necessitatibus deserunt tempora voluptate possimus sapiente commodi asperiores similique, aspernatur iusto earum, pariatur quis dolores id porro.",
     date: new Date("2024-12-01T12:00"),
+    location: "Online",
   },
   {
     title: "Seminarium 2",
     date: new Date("2024-12-01T12:00"),
+    location: "Sala 311d, bud. D-2",
   },
   {
     title: "Seminarium 3",
     date: new Date("2024-12-01T12:00"),
+    location: "Sala wykładowa 103, bud. C-7",
   },
   {
     title: "Seminarium 4",
     date: new Date("2024-12-01T12:00"),
+    location: "Sala 311d, bud. D-2",
   },
 ];
+
+const events: Event[] = seminars.concat([
+  {
+    title: "Coś",
+    date: new Date(2024, 10, 11),
+    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    location: "Online",
+  },
+]);
 
 const professorsByTitle = Object.entries(
   professors.reduce(
@@ -123,12 +150,13 @@ export default function Home() {
     <>
       <Navbar />
 
-      <main>
+      <main className="pb-32">
         <div className="max-w-screen-lg mx-auto w-full px-4 mt-12 grid gap-14 lg:grid-cols-2">
           <div>
-            <h1 className="text-4xl font-black text-brand">
+            <h1 className="text-4xl font-semibold text-brand">
               Department of Control Systems and Mechatronics
             </h1>
+
             <p className="mt-3">
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias
               natus quos minus esse necessitatibus deserunt tempora voluptate
@@ -136,34 +164,12 @@ export default function Home() {
               earum, pariatur quis dolores id porro.
             </p>
 
-            {seminars.length > 0 && (
-              <div className="bg-brand mt-12 text-white px-4 py-6 rounded-2xl flex flex-row items-center space-x-4">
-                <button className="hover:bg-white/80 transition-all focus:ring ring-white focus:outline-none ring-offset-1 bg-white/60 size-6 flex-shrink-0 rounded-full grid place-items-center">
-                  <ChevronLeftIcon className="size-4 text-brand" />
-                </button>
-                <div className="flex-grow">
-                  <h4 className="font-medim text-xl text-center mb-1.5">
-                    Seminar XYZ with prof. XYZ
-                  </h4>
-                  <p className="opacity-80 text-sm leading-tight">
-                    lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Alias natus quos minus esse necessitatibus deserunt tempora
-                    voluptate
-                  </p>
+            <Seminars seminars={seminars} />
 
-                  <div className="mt-4 text-base font-semibold leading-snug pb-6">
-                    <p>01.12.2024 12:00</p>
-                    <p>Sala wykładowa 203, Bud. B3</p>
-                  </div>
-                </div>
-                <button className="hover:bg-white/80 transition-all focus:ring ring-white focus:outline-none ring-offset-1 bg-white/60 size-6 flex-shrink-0 rounded-full grid place-items-center">
-                  <ChevronLeftIcon className="size-4 text-brand transform rotate-180" />
-                </button>
-              </div>
-            )}
+            <Events events={events} />
           </div>
 
-          <div className="mt-4 md:mt-16">
+          <div className="mt-4 md:mt-0">
             {professorsByTitle.map(([groupName, members], i) => (
               <div key={i} className="mx-auto max-w-screen-sm w-full">
                 <div className="flex flex-row items-center">
@@ -181,9 +187,12 @@ export default function Home() {
                       <div className="mx-auto text-center w-[100px] flex-shrink">
                         <div className="size-14 border-[3px] mx-auto mb-1 border-brand rounded-full">
                           <img
-                            src={`https://ui-avatars.com/api/?background=cf6967&color=fff&name=${member.firstName}+${member.lastName}`}
+                            src={
+                              member.image ||
+                              `https://ui-avatars.com/api/?background=cf6967&color=fff&name=${member.firstName}+${member.lastName}`
+                            }
                             alt=""
-                            className="rounded-full size-full"
+                            className="rounded-full size-full object-cover"
                           />
                         </div>
                         <p className="text-sm block font-medium mt-2 leading-none">
