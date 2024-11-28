@@ -1,19 +1,17 @@
 import Link from "next/link";
-import { Doto } from "next/font/google";
-
-const doto = Doto({
-  subsets: ["latin"],
-});
+import Logo from "@/app/pwr.png";
+import Image from "next/image";
 
 export function Navbar() {
   return (
     <nav>
-      <div className="max-w-screen-xl mx-auto w-full px-4 py-4 flex flex-row items-center justify-between space-x-2">
-        <Link
-          href="/"
-          className={`${doto.className} text-brand font-black text-4xl hover:bg-stone-50 transition-all px-3 py-1 rounded-md`}
-        >
-          DIUNA
+      <div className="max-w-screen-lg mx-auto w-full px-4 py-4 flex flex-row items-center justify-between space-x-2">
+        <Link href="/">
+          <Image
+            src={Logo}
+            alt="Emblem of the Wrocław University of Science and Technology"
+            className="w-12 h-auto"
+          />
         </Link>
 
         <div className="hidden relative border w-full max-w-md sm:flex flex-row items-center text-stone-500 justify-start bg-white rounded-sm text-xs">

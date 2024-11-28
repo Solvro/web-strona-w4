@@ -2,25 +2,35 @@
 
 import { useState } from "react";
 import { google, outlook, ics } from "calendar-link";
-import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from "@headlessui/react";
+import {
+  Dialog,
+  DialogBackdrop,
+  DialogPanel,
+  DialogTitle,
+} from "@headlessui/react";
 import { CalendarDaysIcon } from "@heroicons/react/24/outline";
 
-export function SeminarShortcut({ seminar }: { seminar: { title: string; date: Date } }) {
-  const [isShowPicker, setIsShowPicker] = useState(false);
+const calendarProviders = [
+  {
+    name: "Google",
+    icon: GoogleCalendarIcon,
+    provider: google,
+  },
+  {
+    name: "Outlook",
+    icon: OutlookIcon,
+    provider: outlook,
+  },
+  { name: "ICS", provider: ics },
+];
 
-  const calendarProviders = [
-    {
-      name: "Google",
-      icon: GoogleCalendarIcon,
-      provider: google,
-    },
-    {
-      name: "Outlook",
-      icon: OutlookIcon,
-      provider: outlook,
-    },
-    { name: "ICS", provider: ics },
-  ];
+// DEPRECATED
+export function SeminarShortcut({
+  seminar,
+}: {
+  seminar: { title: string; date: Date };
+}) {
+  const [isShowPicker, setIsShowPicker] = useState(false);
 
   return (
     <>
@@ -60,7 +70,11 @@ export function SeminarShortcut({ seminar }: { seminar: { title: string; date: D
         </button>
       </div>
 
-      <Dialog open={isShowPicker} onClose={setIsShowPicker} className="relative z-10">
+      <Dialog
+        open={isShowPicker}
+        onClose={setIsShowPicker}
+        className="relative z-10"
+      >
         <DialogBackdrop
           transition
           className="fixed inset-0 bg-gray-500/75 transition-opacity data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in"
@@ -78,14 +92,20 @@ export function SeminarShortcut({ seminar }: { seminar: { title: string; date: D
                     <CalendarDaysIcon className="size-6 text-brand" />
                   </div>
                   <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-                    <DialogTitle as="h3" className="text-base font-semibold text-gray-900">
+                    <DialogTitle
+                      as="h3"
+                      className="text-base font-semibold text-gray-900"
+                    >
                       Dodaj seminarium do kalendarza
                     </DialogTitle>
                     <div className="mt-2">
                       <p className="text-sm text-gray-500">
-                        Dodaj seminarium <strong>{seminar.title}</strong>, które odbędzie się:{" "}
-                        <br />
-                        <strong>{seminar.date.toLocaleDateString("pl-PL")}</strong> o godzinie{" "}
+                        Dodaj seminarium <strong>{seminar.title}</strong>, które
+                        odbędzie się: <br />
+                        <strong>
+                          {seminar.date.toLocaleDateString("pl-PL")}
+                        </strong>{" "}
+                        o godzinie{" "}
                         <strong>
                           {seminar.date.toLocaleTimeString("pl-PL", {
                             hour: "2-digit",
@@ -101,7 +121,10 @@ export function SeminarShortcut({ seminar }: { seminar: { title: string; date: D
                             key={i}
                             onClick={() =>
                               window.open(
-                                provider.provider({ title: seminar.title, start: seminar.date })
+                                provider.provider({
+                                  title: seminar.title,
+                                  start: seminar.date,
+                                }),
                               )
                             }
                             className="flex flex-row items-center justify-between w-full p-2 rounded-md border"
@@ -139,7 +162,12 @@ export function SeminarShortcut({ seminar }: { seminar: { title: string; date: D
 
 function OutlookIcon() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 32 32">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="32px"
+      height="32px"
+      viewBox="0 0 32 32"
+    >
       <path
         d="M19.484,7.937v5.477L21.4,14.619a.489.489,0,0,0,.21,0l8.238-5.554a1.174,1.174,0,0,0-.959-1.128Z"
         style={{ fill: "#0072c6" }}
