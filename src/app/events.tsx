@@ -1,52 +1,24 @@
 "use client";
-import { useMemo, useState } from "react";
 import { EventCalendar } from "@/components/ui/event-calendar";
 import { Event } from "@/types";
+import { useWindowSize } from "usehooks-ts";
+
+const displayPorts = [
+  { from: 0, to: 650, months: 1 },
+  { from: 650, to: 850, months: 2 },
+  { from: 850, to: 1020, months: 3 },
+  { from: 1020, to: Infinity, months: 2 },
+];
 
 export function Events({ events }: { events: Event[] }) {
-  const [currentMonth, setCurrentMonth] = useState(new Date());
-  const currentMonthEvents = useMemo(
-    () =>
-      events.filter(
-        ({ date }) =>
-          date.getMonth() === currentMonth.getMonth() &&
-          date.getUTCFullYear() === currentMonth.getUTCFullYear(),
-      ),
-    [events, currentMonth],
-  );
+  const { width = 0 } = useWindowSize();
 
   return (
-    <div className="mt-4 shadow-lg space-x-2 flex flex-row rounded-2xl p-4 pl-2 border">
-      <EventCalendar
-        mode="multiple"
-        selected={events.map((e) => e.date)}
-        onMonthChange={(e) => setCurrentMonth(e)}
-      />
-
-      {currentMonthEvents.length > 0 && (
-        <div className="mt-12">
-          <h3 className="mb-1">
-            Events in{" "}
-            <span className="font-medium">
-              {currentMonth.toLocaleString("en-GB", {
-                month: "long",
-                year: "numeric",
-              })}
-            </span>
-          </h3>
-
-          <ul className="list-disc list-inside">
-            {currentMonthEvents.map((event, i) => (
-              <li key={i} className="mb-1">
-                <span>{event.title}</span>
-                <small className="block leading-none">
-                  {event.date.toLocaleDateString("pl-PL")}
-                </small>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </div>
+    <EventCalendar
+      className="mt-4 shadow-lg rounded-2xl p-4 border flex justify-center"
+      mode="multiple"
+      numberOfMonths={displayPorts.find((port) => width >= port.from && width < port.to)?.months}
+      selected={events.map((e) => e.date)}
+    />
   );
 }

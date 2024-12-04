@@ -18,14 +18,10 @@ export function Seminars({ seminars }: { seminars: Event[] }) {
         {seminars.map((seminar, index) => (
           <CarouselItem key={index}>
             <div className="p-1">
-              <h4 className="font-medium text-xl text-center mb-1.5">
-                {seminar.title}
-              </h4>
+              <h4 className="font-medium text-xl text-center mb-1.5">{seminar.title}</h4>
 
               {seminar.description && (
-                <p className="opacity-80 text-sm leading-tight">
-                  {seminar.description}
-                </p>
+                <p className="opacity-80 text-sm leading-tight">{seminar.description}</p>
               )}
 
               <div className="mt-4 text-base font-semibold leading-snug pb-6">

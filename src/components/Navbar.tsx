@@ -1,85 +1,60 @@
-import Link from "next/link";
-import Logo from "@/app/pwr.png";
+"use client";
+
+import PwrLogo from "@/assets/pwr.png";
 import Image from "next/image";
+import Link from "next/link";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuIndicator,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuViewport,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
 
 export function Navbar() {
   return (
-    <nav>
-      <div className="max-w-screen-lg mx-auto w-full px-4 py-4 flex flex-row items-center justify-between space-x-2">
-        <Link href="/">
-          <Image
-            src={Logo}
-            alt="Emblem of the Wrocław University of Science and Technology"
-            className="w-12 h-auto"
-          />
-        </Link>
-
-        <div className="hidden relative border w-full max-w-md sm:flex flex-row items-center text-stone-500 justify-start bg-white rounded-sm text-xs">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="size-4 z-10 pointer-events-none mr-1 absolute left-2 top-1/2 transform -translate-y-1/2"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+    <nav className="max-w-screen-xl mx-auto py-4 w-full flex flex-col lg:flex-row justify-between items-center px-4 select-none">
+      <div className="flex justify-between items-center w-full lg:w-auto">
+        <div className="flex flex-row justify-center items-center gap-4">
+          <Link href="/">
+            <Image
+              src={PwrLogo}
+              alt="Emblem of Wroclaw University of Science and Technology"
+              className="w-12 h-auto"
             />
-          </svg>
-          <input
-            type="text"
-            placeholder="Szukaj"
-            className="w-full pl-7 py-2 outline-none bg-transparent focus:ring-1 ring-brand rounded-sm pr-3"
-          />
-        </div>
-
-        <div className="flex flex-row items-center space-x-2">
-          <Link
-            href="/search"
-            className="sm:hidden py-2 px-2 border hover:bg-stone-100 focus:ring-1 ring-brand rounded-sm"
-            title="Szukaj"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="size-4 text-stone-500"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-              />
-            </svg>
-          </Link>
-
-          <Link
-            href="/login"
-            className="py-2 border flex flex-row flex-nowrap items-center border-brand hover:text-white hover:bg-brand transition-all font-medium px-5 text-brand bg-white rounded-sm text-xs shadow shadow-brand/10"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="size-4 mr-1 transform rotate-180"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75"
-              />
-            </svg>
-            <span className="text-nowrap">Zaloguj się</span>
           </Link>
         </div>
+        {/* <button className="lg:hidden text-gray-800 dark:text-white" onClick={toggleMenu}>
+          {isOpen ? <XMarkIcon className="h-6 w-6" /> : <Bars3Icon className="h-6 w-6" />}
+        </button> */}
       </div>
+
+      <NavigationMenu>
+        <NavigationMenuList>
+          <NavigationMenuItem>
+            <Link href="/education" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                Education
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <NavigationMenuTrigger>Department</NavigationMenuTrigger>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <Link href="/contact" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                Contact
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
     </nav>
   );
 }
