@@ -3,38 +3,39 @@
 import PwrLogo from "@/assets/pwr.png";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { Bars3Icon } from "@heroicons/react/20/solid";
 import {
   NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuIndicator,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  NavigationMenuViewport,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { Button } from "./ui/button";
+import { useState } from "react";
 
 export function Navbar() {
-  return (
-    <nav className="max-w-screen-xl mx-auto py-4 w-full flex flex-col lg:flex-row justify-between items-center px-4 select-none">
-      <div className="flex justify-between items-center w-full lg:w-auto">
-        <div className="flex flex-row justify-center items-center gap-4">
-          <Link href="/">
-            <Image
-              src={PwrLogo}
-              alt="Emblem of Wroclaw University of Science and Technology"
-              className="w-12 h-auto"
-            />
-          </Link>
-        </div>
-        {/* <button className="lg:hidden text-gray-800 dark:text-white" onClick={toggleMenu}>
-          {isOpen ? <XMarkIcon className="h-6 w-6" /> : <Bars3Icon className="h-6 w-6" />}
-        </button> */}
-      </div>
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-      <NavigationMenu>
+  return (
+    <nav className="max-w-screen-xl mx-auto py-4 w-full flex flex-row justify-between items-center px-4 select-none">
+      <Link href="/">
+        <Image
+          src={PwrLogo}
+          alt="Emblem of Wroclaw University of Science and Technology"
+          className="w-12 h-auto"
+        />
+      </Link>
+      <NavigationMenu className="hidden sm:flex">
         <NavigationMenuList>
           <NavigationMenuItem>
             <Link href="/education" legacyBehavior passHref>
@@ -55,6 +56,45 @@ export function Navbar() {
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button variant="outline" className="sm:hidden">
+            <Bars3Icon className="size-6" />
+            <span className="text-sm font-medium">Menu</span>
+          </Button>
+        </SheetTrigger>
+        <SheetContent>
+          <SheetHeader>
+            <SheetTitle>
+              <Image
+                src={PwrLogo}
+                alt="Emblem of Wroclaw University of Science and Technology"
+                className="w-12 h-auto"
+              />
+            </SheetTitle>
+            <SheetDescription className="pt-6">
+              <Link
+                href="/education"
+                className="text-black font-medium py-1 px-2 hover:bg-stone-50 rounded-md block text-left"
+              >
+                Education
+              </Link>
+              <Link
+                href="/department"
+                className="text-black font-medium py-1 px-2 hover:bg-stone-50 rounded-md block text-left"
+              >
+                Department
+              </Link>
+              <Link
+                href="/contact"
+                className="text-black font-medium py-1 px-2 hover:bg-stone-50 rounded-md block text-left"
+              >
+                Contact
+              </Link>
+            </SheetDescription>
+          </SheetHeader>
+        </SheetContent>
+      </Sheet>
     </nav>
   );
 }
