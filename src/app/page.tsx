@@ -1,10 +1,10 @@
-import { Navbar } from "@/components/navbar";
+import { Navbar } from "@/components/Navbar";
 import { Event } from "@/types";
-
 import { Seminars } from "./seminars";
 import { Events } from "./events";
 import { OurTeam } from "./our-team";
 import { ResearchFocus } from "./research-focus";
+import { ContactSection } from "./contact";
 
 // temporary static data, to be fetched from an API
 
@@ -70,6 +70,7 @@ export default function Home() {
         </div>
 
         <ResearchFocus />
+        <ContactSection />
       </main>
     </>
   );

@@ -52,7 +52,7 @@ export function ResearchFocus() {
         <Image
           src={researchFocusAsset}
           alt="Laboratory equipment"
-          className="hidden md:block w-full max-w-96 h-auto self-center"
+          className="hidden md:block w-full max-w-96 h-auto self-center rounded-md shadow-md"
         />
       </div>
     </div>
