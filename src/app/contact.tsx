@@ -1,7 +1,8 @@
 import {FC} from 'react'
 import Image from 'next/image'
 import mountains from '@/assets/mountains.jpg'
-import { ContactData } from '@/components/ContactData'
+import { ContactData } from '@/components/ui/contact-data'
+import { MapComponent } from '@/components/ui/map'
 
 export const ContactSection: FC = () => {
     return(
@@ -20,8 +21,9 @@ export const ContactSection: FC = () => {
               <div className="absolute inset-0 bg-[#9d0620]/40" />
             </div>
           </div>
-          <div className="relative w-full h-full px-4 flex flex-col md:flex-row items-center justify-center">
+          <div className="relative m-auto w-full max-w-[1200px] h-full px-4 flex flex-col justify-between md:flex-row items-center justify-center">
             <ContactData />
+            <MapComponent />
           </div>
         </div>
       </section>

@@ -24,7 +24,7 @@ const contactItems = [
 
 export const ContactData: FC = () => {
   return (
-    <div className="flex flex-col justify-between min-h-[310px] min-w-[300px] max-w-[620px] w-full bg-[#F3F3F3]/20 border-white border-[2px] rounded-[20px] p-6 sm:p-12">
+    <div className="flex flex-col justify-between min-h-[310px] min-w-[300px] max-w-[600px] w-full bg-[#F3F3F3]/20 border-white border-[2px] rounded-[20px] p-6 sm:p-12">
       {contactItems.map((item, index) => (
         <div
           className="flex items-center mt-4 sm:mt-6"

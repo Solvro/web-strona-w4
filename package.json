@@ -19,6 +19,7 @@
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
     "embla-carousel-react": "^8.5.1",
+    "leaflet": "^1.7.1",
     "lucide-react": "^0.462.0",
     "next": "15.0.3",
     "react": "19.0.0-rc-66855b96-20241106",
@@ -29,6 +30,7 @@
     "usehooks-ts": "^3.1.0"
   },
   "devDependencies": {
+    "@types/leaflet": "^1.9.15",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
