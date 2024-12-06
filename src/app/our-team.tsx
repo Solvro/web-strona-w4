@@ -86,7 +86,7 @@ const members = [
 
 export function OurTeam() {
   return (
-    <div>
+    <div className="mt-14">
       <h2 className="section-header mb-10">Our Team</h2>
       <ul className="mt-3 mb-6 sm:px-12 lg:px-0 flex flex-row gap-3 justify-center flex-wrap">
         {members.map((member) => (

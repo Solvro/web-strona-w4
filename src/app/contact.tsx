@@ -1,4 +1,4 @@
-import { CSSProperties, FC } from "react";
+import { CSSProperties } from "react";
 import Image from "next/image";
 import { EnvelopeIcon, MapPinIcon, PhoneIcon } from "@heroicons/react/24/outline";
 
@@ -21,7 +21,7 @@ const contactItems = [
   },
 ];
 
-export const ContactSection: FC = () => {
+export const Contact = () => {
   return (
     <section className="relative w-full">
       <div className="absolute inset-0 h-full w-full">
