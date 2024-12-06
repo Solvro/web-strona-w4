@@ -1,6 +1,7 @@
 import {FC} from 'react'
 import Image from 'next/image'
 import mountains from '@/assets/mountains.jpg'
+import { ContactData } from '@/components/ContactData'
 
 export const ContactSection: FC = () => {
     return(
@@ -20,7 +21,7 @@ export const ContactSection: FC = () => {
             </div>
           </div>
           <div className="relative w-full h-full px-4 flex flex-col md:flex-row items-center justify-center">
-            
+            <ContactData />
           </div>
         </div>
       </section>
