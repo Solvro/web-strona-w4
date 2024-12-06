@@ -6,8 +6,6 @@ import { OurTeam } from "./our-team";
 import { ResearchFocus } from "./research-focus";
 import { ContactSection } from "./contact";
 
-// temporary static data, to be fetched from an API
-
 const seminars: Event[] = [
   {
     title: "Seminarium 1",
@@ -50,9 +48,7 @@ export default function Home() {
       <main className="pb-32 max-w-screen-xl mx-auto w-full px-4 mt-12">
         <div className="lg:grid gap-14 grid-cols-2">
           <div>
-            <h1 className="text-4xl font-semibold text-brand">
-              Department of Control Systems and Mechatronics
-            </h1>
+            <h1 className="text-4xl font-semibold text-brand">Cyberphysical Systems Laboratory</h1>
 
             <p className="mt-3">
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias natus quos minus esse
@@ -70,8 +66,10 @@ export default function Home() {
         </div>
 
         <ResearchFocus />
-        <ContactSection />
       </main>
+
+      <ContactSection />
+      <footer className="text-center font-poppins py-10">Made with ❤️ by Solvro ©</footer>
     </>
   );
 }

@@ -80,11 +80,13 @@ body {
 }
 
 .section-header {
+  --dash: #787878;
   @apply text-brand font-medium text-2xl;
 }
 
 .section-header::before {
   content: "";
   vertical-align: middle;
-  @apply inline-block bg-[#787878] mr-1 w-6 h-[1px];
+  background-color: var(--dash);
+  @apply inline-block mr-1 w-6 h-[1px];
 }
