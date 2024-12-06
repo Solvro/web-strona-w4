@@ -4,7 +4,7 @@ import { EnvelopeIcon, MapPinIcon, PhoneIcon } from "@heroicons/react/24/outline
 
 import { Map } from "./map";
 
-import mountains from "@/assets/mountains.jpg";
+import mountains from "@/assets/mountains.jpeg";
 
 const contactItems = [
   {
