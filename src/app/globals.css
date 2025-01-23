@@ -12,6 +12,7 @@
 
 body {
   font-family: Roboto, Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
 
 @layer base {
@@ -89,4 +90,8 @@ body {
   vertical-align: middle;
   background-color: var(--dash);
   @apply inline-block mr-1 w-6 h-[1px];
+}
+
+.rdp-caption_end:not(.rdp-caption_start) {
+  @apply hidden sm:block;
 }

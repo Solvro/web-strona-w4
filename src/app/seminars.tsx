@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/carousel";
 import { Seminar } from "@/types";
 import { env } from "@/env";
-import { EventCalendar } from "@/components/ui/event-calendar";
+import { SeminarCalendar } from "./seminar-calendar";
 
 export async function Seminars() {
   const response = await fetch(env.API_EVENTS_URL);
@@ -26,7 +26,7 @@ export async function Seminars() {
 
   if (seminars.length <= 0) return null;
   return (
-    <div className="mt-6 w-full flex flex-col lg:flex-row items-center justify-center space-y-4 lg:space-y-0 lg:space-x-4">
+    <div className="mt-6 w-full mx-auto flex flex-col lg:flex-row items-center justify-center space-y-4 lg:space-y-0 lg:space-x-4">
       <Carousel className="bg-brand text-white px-4 py-6 w-full rounded-2xl">
         <CarouselPrevious />
 
@@ -62,14 +62,7 @@ export async function Seminars() {
         <CarouselNext />
       </Carousel>
 
-      <EventCalendar
-        className="shadow-lg rounded-2xl p-4 border flex justify-center"
-        mode="multiple"
-        numberOfMonths={2}
-        selected={seminars.map((e) => e.start_date)}
-        showOutsideDays={false}
-        weekStartsOn={1}
-      />
+      <SeminarCalendar seminars={seminars} />
     </div>
   );
 }
