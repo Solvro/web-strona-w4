@@ -21,11 +21,8 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Button } from "./ui/button";
-import { useState } from "react";
 
 export function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   return (
     <nav className="max-w-screen-xl mx-auto py-4 w-full flex flex-row justify-between items-center px-4 select-none">
       <Link href="/">

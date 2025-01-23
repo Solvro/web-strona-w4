@@ -14,6 +14,7 @@
     "@radix-ui/react-dialog": "^1.1.2",
     "@radix-ui/react-navigation-menu": "^1.2.1",
     "@radix-ui/react-slot": "^1.1.0",
+    "@t3-oss/env-nextjs": "^0.11.1",
     "calendar-link": "^2.7.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -25,10 +26,11 @@
     "react": "19.0.0-rc-66855b96-20241106",
     "react-day-picker": "^8.10.1",
     "react-dom": "19.0.0-rc-66855b96-20241106",
-    "react-leaflet": "^4.2.1",
+    "react-leaflet": "^5.0.0-rc.1",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
-    "usehooks-ts": "^3.1.0"
+    "usehooks-ts": "^3.1.0",
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@types/leaflet": "^1.9.15",

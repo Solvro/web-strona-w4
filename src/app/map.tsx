@@ -9,15 +9,17 @@ const markerIcon = L.icon({
   iconSize: [36, 46],
   iconAnchor: [18, 43],
 });
+
 L.Marker.prototype.options.icon = markerIcon;
 
-export function Map() {
+export default function Map() {
   return (
     <MapContainer
       center={[51.108946, 17.059969]}
       zoom={16}
       scrollWheelZoom={false}
       className="w-full h-full"
+      zoomControl={false}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
