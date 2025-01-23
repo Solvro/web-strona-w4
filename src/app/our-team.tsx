@@ -1,30 +1,15 @@
 "use client"
 
+import { Member } from "@/types";
 import { useEffect, useState } from "react";
 
-type Member = {
-    name: string,
-    avatar_urls: {
-        "24": string,
-        "48": string,
-        "96": string,
-    },
-    acf: {
-        consultations: string,
-        contact: string,
-        academic_history: string,
-        titlePrefix: string,
-        titleSuffix: string,
-    },
-    is_author: boolean,
-};
 
 export function OurTeam() {
     const [members, setMembers] = useState<Member[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    useEffect(() => {  
+    useEffect(() => {
         const fetchMembers = async () => {
             try {
                 const response = await fetch(process.env.NEXT_PUBLIC_REST_API_USERS_URL ?? ""); // Replace API_URL with your WordPress REST API endpoint
@@ -38,7 +23,7 @@ export function OurTeam() {
                 }
                 setMembers(result);
             } catch (err) {
-                setError(err.message);
+                setError((err as any).message);
             } finally {
                 setLoading(false);
             }
@@ -56,27 +41,29 @@ export function OurTeam() {
             <ul className="mt-3 mb-6 sm:px-12 lg:px-0 flex flex-row gap-3 justify-center flex-wrap">
                 {members.map((member, index) => (
                     <li key={index}>
-                        <div className="mx-auto text-center w-[100px] flex-shrink mb-2">
-                            <div className="size-20 border-[3px] mx-auto mb-1 border-brand rounded-full">
-                                <img
-                                    src={
-                                        member.avatar_urls[48] ||
-                                        `https://ui-avatars.com/api/?background=cf6967&color=fff&name=${member.name}`
-                                    }
-                                    alt=""
-                                    className="rounded-full size-full object-cover"
-                                />
+                        <a href={`/team/${member.slug}`}>
+                            <div className="mx-auto text-center w-[100px] flex-shrink mb-2">
+                                <div className="size-20 border-[3px] mx-auto mb-1 border-brand rounded-full">
+                                    <img
+                                        src={
+                                            member.avatar_urls[96] ||
+                                            `https://ui-avatars.com/api/?background=cf6967&color=fff&name=${member.name}`
+                                        }
+                                        alt=""
+                                        className="rounded-full size-full object-cover"
+                                    />
+                                </div>
+                                {member.acf.titlePrefix && (
+                                    <small className="text-xs block mt-2">{member.acf.titlePrefix}</small>
+                                )}
+                                <p className="text-sm block font-medium leading-tight">
+                                    {member.name}
+                                </p>
+                                {member.acf.titleSuffix && (
+                                    <em className="text-xs block leading-tight">{member.acf.titleSuffix}</em>
+                                )}
                             </div>
-                            {member.acf.titlePrefix && (
-                                <small className="text-xs block mt-2">{member.acf.titlePrefix}</small>
-                            )}
-                            <p className="text-sm block font-medium leading-tight">
-                                {member.name}
-                            </p>
-                            {member.acf.titleSuffix && (
-                                <em className="text-xs block leading-tight">{member.acf.titleSuffix}</em>
-                            )}
-                        </div>
+                        </a>
                     </li>
                 ))}
             </ul>

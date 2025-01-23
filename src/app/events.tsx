@@ -1,6 +1,6 @@
 "use client";
 import { EventCalendar } from "@/components/ui/event-calendar";
-import { Event } from "@/types";
+import { Event, Seminar } from "@/types";
 import { useWindowSize } from "usehooks-ts";
 
 const displayPorts = [
@@ -11,7 +11,7 @@ const displayPorts = [
   { from: 1280, to: Infinity, months: 2 },
 ];
 
-export function Events({ events }: { events: Event[] }) {
+export function Events({ events }: { events: Seminar[] }) {
   const { width = 0 } = useWindowSize();
 
   return (
@@ -19,7 +19,7 @@ export function Events({ events }: { events: Event[] }) {
       className="shadow-lg rounded-2xl p-4 border flex justify-center"
       mode="multiple"
       numberOfMonths={displayPorts.find((port) => width >= port.from && width < port.to)?.months}
-      selected={events.map((e) => e.date)}
+      selected={events.map((e) => e.start_date)}
     />
   );
 }

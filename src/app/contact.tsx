@@ -23,7 +23,7 @@ const contactItems = [
 
 export const Contact = () => {
   return (
-    <section className="relative w-full">
+    <section className="relative w-full" id="contact">
       <div className="absolute inset-0 h-full w-full">
         <Image src={mountains} alt="Background banner" fill className="object-cover" />
         <div className="absolute inset-0 bg-[#9d0620]/40" />
@@ -37,7 +37,7 @@ export const Contact = () => {
           >
             Contact
           </h2>
-          <ul className="bg-[#f3f3f3]/20 border border-white rounded-xl py-6 px-6 md:py-12 md:px-16">
+          <ul className="bg-[#f3f3f3]/20 border border-white rounded-md py-6 px-6 md:py-12 md:px-16">
             {contactItems.map((item, index) => (
               <li className="flex items-center mt-5 first-of-type:mt-0" key={index}>
                 <item.icon className="size-6 md:size-8 shrink-0 text-white" />

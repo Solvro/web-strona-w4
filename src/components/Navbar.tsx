@@ -48,7 +48,7 @@ export function Navbar() {
             <NavigationMenuTrigger>Department</NavigationMenuTrigger>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <Link href="/contact" legacyBehavior passHref>
+            <Link href="#contact" legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                 Contact
               </NavigationMenuLink>
@@ -86,7 +86,7 @@ export function Navbar() {
                 Department
               </Link>
               <Link
-                href="/contact"
+                href="#contact"
                 className="text-black font-medium py-1 px-2 hover:bg-stone-50 rounded-md block text-left"
               >
                 Contact
