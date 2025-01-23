@@ -1,6 +1,14 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { EnvelopeIcon, MapPinIcon, PhoneIcon } from "@heroicons/react/24/outline";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import { EnvelopeIcon, HomeIcon, MapPinIcon, PhoneIcon } from "@heroicons/react/24/outline";
 
 import { Navbar } from "@/components/Navbar";
 import { env } from "@/env";
@@ -31,7 +39,25 @@ export default async function UserPage(props: UserPageProps) {
     <>
       <Navbar />
 
-      <main className="pb-32 max-w-screen-xl mx-auto w-full px-4 pt-12">
+      <main className="pb-32 max-w-screen-xl mx-auto w-full px-4 pt-6">
+        <Breadcrumb className="mb-10">
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link href="/">
+                  <HomeIcon className="size-5 shrink-0" />
+                </Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>Authors</BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>{member.name}</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+
         <div className="relative w-full">
           <div className="flex flex-col md:flex-row md:space-x-4 relative z-10">
             <div className="w-[340px] mx-auto flex-shrink-0 mb-8 md:mb-0">
