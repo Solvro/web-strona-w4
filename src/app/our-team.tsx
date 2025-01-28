@@ -19,7 +19,7 @@ export async function OurTeam() {
                 <div className="size-20 border-[3px] mx-auto mb-1 border-brand rounded-full">
                   <img
                     src={
-                      member.avatar_urls[96] ||
+                      member.acf.profileImage || member.avatar_urls[96] ||
                       `https://ui-avatars.com/api/?background=cf6967&color=fff&name=${member.name}`
                     }
                     alt=""

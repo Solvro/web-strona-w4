@@ -12,7 +12,7 @@ import { EnvelopeIcon, HomeIcon, MapPinIcon, PhoneIcon } from "@heroicons/react/
 
 import { Navbar } from "@/components/Navbar";
 import { env } from "@/env";
-import { Member } from "@/types";
+import { Member, Post } from "@/types";
 
 import "./style.css";
 
@@ -27,13 +27,19 @@ export default async function UserPage(props: UserPageProps) {
     slug: params.user,
   });
 
-  const response = await fetch(env.API_USERS_URL + "?" + requestParams.toString());
+  const response = await fetch(env.API_USERS_URL + "&" + requestParams.toString());
   if (!response.ok) throw new Error(`Error fetching members: ${response.statusText}`);
 
   const body = await response.json();
   if (!Array.isArray(body) || body.length === 0) return notFound();
 
   const member: Member = body[0];
+  if (!member.is_author) return notFound();
+
+  const postsResponse = await fetch(env.API_POSTS_URL + "?author=" + member.id);
+  if (!postsResponse.ok) throw new Error(`Error fetching posts: ${response.statusText}`);
+
+  const posts: Post[] = await postsResponse.json();
 
   return (
     <>
@@ -63,7 +69,7 @@ export default async function UserPage(props: UserPageProps) {
             <div className="w-[340px] mx-auto flex-shrink-0 mb-8 md:mb-0">
               <img
                 src={
-                  member.avatar_urls[96] ||
+                  member.acf.profileImage || member.avatar_urls[96] ||
                   `https://ui-avatars.com/api/?background=cf6967&color=fff&name=${member.name}`
                 }
                 alt={`${member.name}'s avatar`}
@@ -78,7 +84,6 @@ export default async function UserPage(props: UserPageProps) {
             <div className="flex-grow">
               <div className="grid lg:grid-cols-2 gap-6">
                 <div className="card lg:col-span-2">
-                  {/* {member.acf.academic_history} */}
                   Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum quibusdam, sequi
                   qui totam, quaerat blanditiis adipisci id debitis, dolorem suscipit itaque natus
                   vitae inventore placeat doloribus dignissimos esse ducimus! Quidem.
@@ -87,7 +92,7 @@ export default async function UserPage(props: UserPageProps) {
                 <div className="card">
                   <h3 className="text-lg font-medium mb-1 -mt-2">Academic background</h3>
                   <div>
-                    {member.acf.academic_history}
+                    {member.acf.academicHistory}
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat a culpa
                     laudantium quibusdam totam molestias sunt nostrum impedit iste animi suscipit,
                     porro laboriosam. Laudantium omnis ut temporibus sed rem minus?
@@ -134,38 +139,28 @@ export default async function UserPage(props: UserPageProps) {
           <h2 className="section-header mb-7">Blog and Publications</h2>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-8">
-            {new Array(8).fill(0).map((_, index) => (
+            {posts.map((post, index) => (
               <div key={index}>
-                <img
-                  src="https://i.imgur.com/xrmQYgi.png"
-                  alt=""
-                  className="border w-full object-cover h-40 mb-2 bg-white border-stone-200"
-                />
+              <img
+                src="https://i.imgur.com/xrmQYgi.png"
+                alt=""
+                className="border w-full object-cover h-40 mb-2 bg-white border-stone-200"
+              />
 
-                <Link href="/" className="text-lg font-medium leading-tight">
-                  Autistic behaviour model &bull; April 15th, 2021
-                </Link>
+              <Link href={`/post/${post.slug}`} className="text-lg font-medium leading-tight">
+                {post.title.rendered} &bull; {new Date(post.date).toLocaleDateString()}
+              </Link>
 
-                <div className="text-sm mt-0.5">
-                  <span className="font-medium text-brand">Category</span>
-                  &nbsp;&bull;&nbsp;
-                  <span>8 minutes read</span>
-                </div>
+              <div className="text-sm mt-0.5">
+                <span className="font-medium text-brand">Category</span>
+                &nbsp;&bull;&nbsp;
+                <span>8 minute read</span>
               </div>
+            </div>
             ))}
           </div>
         </section>
       </main>
-
-      {/* <div>
-        This is user page - {member.name}
-        <img src={member.avatar_urls[96]} alt="" />
-        {member.acf.titlePrefix} <br />
-        {member.acf.titleSuffix} <br />
-        {member.acf.academic_history} <br />
-        {member.acf.consultations} <br />
-        {member.acf.contact} <br />
-      </div> */}
     </>
   );
 }

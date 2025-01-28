@@ -29,9 +29,10 @@ export type Member = {
     acf: {
         consultations: string,
         contact: string,
-        academic_history: string,
+        academicHistory: string,
         titlePrefix: string,
         titleSuffix: string,
+        profileImage: string,
     },
     is_author: boolean,
 };
