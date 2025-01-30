@@ -91,11 +91,11 @@ export default async function UserPage(props: UserPageProps) {
 
                 <div className="card">
                   <h3 className="text-lg font-medium mb-1 -mt-2">Academic background</h3>
-                  <div>
-                    {member.acf.academicHistory}
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat a culpa
-                    laudantium quibusdam totam molestias sunt nostrum impedit iste animi suscipit,
-                    porro laboriosam. Laudantium omnis ut temporibus sed rem minus?
+                  <div dangerouslySetInnerHTML={{__html: member.acf.academicHistory}}>
+                    {/* {member.acf.academicHistory} */}
+                      {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat a culpa
+                      laudantium quibusdam totam molestias sunt nostrum impedit iste animi suscipit,
+                      porro laboriosam. Laudantium omnis ut temporibus sed rem minus? */}
                   </div>
                 </div>
 
@@ -104,7 +104,7 @@ export default async function UserPage(props: UserPageProps) {
                   <ul>
                     <li className="flex items-center mt-0">
                       <EnvelopeIcon className="size-6 shrink-0 opacity-60" />
-                      <p className="ml-2">{member.acf.contact}some_mail@eda.pl</p>
+                      <p className="ml-2">{member.acf.contact}</p>
                     </li>
                     <li className="flex items-center mt-2">
                       <PhoneIcon className="size-6 shrink-0 opacity-60" />
@@ -116,7 +116,7 @@ export default async function UserPage(props: UserPageProps) {
                   <div>
                     <div className="flex items-center mt-2">
                       <MapPinIcon className="size-6 shrink-0 opacity-60" />
-                      <p className="ml-2">{member.acf.consultations} Lokalizacja</p>
+                      <p className="ml-2">{member.acf.consultations}</p>
                     </div>
                   </div>
                 </div>
