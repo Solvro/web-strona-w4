@@ -51,3 +51,20 @@ export type Post = {
     comment_status: "open" | "closed",
     tags: number[],
 };
+
+export type Comment = {
+    id: number,
+    post: number,
+    parent: number, // 0 if it's a top-level comment
+    author: number, // 0 if it's an anonymous comment
+    author_name: string,
+    date: string,
+    content: {
+        rendered: string,
+    },
+    author_avatar_urls: {
+        "24": string,
+        "48": string,
+        "96": string,
+    },
+};
