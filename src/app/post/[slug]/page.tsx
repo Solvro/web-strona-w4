@@ -13,6 +13,8 @@ import { EnvelopeIcon, HomeIcon, MapPinIcon, PhoneIcon } from "@heroicons/react/
 import { Navbar } from "@/components/Navbar";
 import { env } from "@/env";
 import { Member, Post } from "@/types";
+import Comments from "./comments";
+import Footer from "@/components/Footer";
 
 type UserPageProps = {
     params: Promise<{ slug: string }>;
@@ -63,7 +65,7 @@ export default async function PostPage(props: UserPageProps) {
                 <div className="relative w-full">
                     <h1 className="text-3xl font-bold">{post.title.rendered}</h1>
                     <div>
-                        Jan Kowlaski 
+                        Jan Kowlaski
                         25.01.2025
                     </div>
                 </div>
@@ -71,7 +73,11 @@ export default async function PostPage(props: UserPageProps) {
                 {/* TODO: content styles, tailwind removed default styles */}
                 <section className="mt-16" dangerouslySetInnerHTML={{ __html: post.content.rendered }}>
                 </section>
+
+                <Comments postId={post.id}/>
             </main>
+
+            <Footer />
         </>
     );
 }

@@ -3,6 +3,7 @@ import { Seminars } from "./seminars";
 import { OurTeam } from "./our-team";
 import { ResearchFocus } from "./research-focus";
 import { Contact } from "./contact";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -33,7 +34,8 @@ export default function Home() {
       </main>
 
       <Contact />
-      <footer className="text-center font-poppins py-10">Made with ❤️ by Solvro ©</footer>
+
+      <Footer />
     </>
   );
 }
