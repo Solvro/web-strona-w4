@@ -16,6 +16,7 @@ import { Member, Post } from "@/types";
 
 import "./style.css";
 import Footer from "@/components/Footer";
+import Image from "next/image";
 
 type UserPageProps = {
     params: Promise<{ user: string }>;

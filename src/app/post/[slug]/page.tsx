@@ -8,11 +8,11 @@ import {
     BreadcrumbPage,
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { EnvelopeIcon, HomeIcon, MapPinIcon, PhoneIcon } from "@heroicons/react/24/outline";
+import { HomeIcon } from "@heroicons/react/24/outline";
 
 import { Navbar } from "@/components/Navbar";
 import { env } from "@/env";
-import { Member, Post } from "@/types";
+import { Post } from "@/types";
 import Comments from "./comments";
 import Footer from "@/components/Footer";
 
