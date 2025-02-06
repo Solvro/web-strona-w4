@@ -70,9 +70,10 @@ export default async function PostPage(props: UserPageProps) {
                     </div>
                 </div>
 
-                {/* TODO: content styles, tailwind removed default styles */}
-                <section className="mt-16" dangerouslySetInnerHTML={{ __html: post.content.rendered }}>
-                </section>
+                <div className="prose">
+                    <section className="mt-16" dangerouslySetInnerHTML={{ __html: post.content.rendered }}>
+                    </section>
+                </div>
 
                 <Comments postId={post.id}/>
             </main>
