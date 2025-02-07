@@ -49,6 +49,7 @@ export type Post = {
     },
     author: string,
     comment_status: "open" | "closed",
+    fimg_url: string | false,
     tags: number[],
 };
 

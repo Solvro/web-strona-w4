@@ -43,6 +43,12 @@ export default async function UserPage(props: UserPageProps) {
 
     const posts: Post[] = await postsResponse.json();
 
+    const getReadTime = (content: string) => {
+        const wordsPerMinute = 200;
+        const textLength = content.split(" ").length;
+        return Math.ceil(textLength / wordsPerMinute);
+    }
+
     return (
         <>
             <Navbar />
@@ -144,7 +150,7 @@ export default async function UserPage(props: UserPageProps) {
                         {posts.map((post, index) => (
                             <div key={index}>
                                 <img
-                                    src="https://i.imgur.com/xrmQYgi.png"
+                                    src={post.fimg_url ? post.fimg_url : "https://i.imgur.com/xrmQYgi.png"}
                                     alt=""
                                     className="border w-full object-cover h-40 mb-2 bg-white border-stone-200"
                                 />
@@ -154,9 +160,9 @@ export default async function UserPage(props: UserPageProps) {
                                 </Link>
 
                                 <div className="text-sm mt-0.5">
-                                    <span className="font-medium text-brand">Category</span>
-                                    &nbsp;&bull;&nbsp;
-                                    <span>8 minute read</span>
+                                    {/* <span className="font-medium text-brand">Category</span>
+                                    &nbsp;&bull;&nbsp; */}
+                                    <span>{getReadTime(post.content.rendered)} minute read</span>
                                 </div>
                             </div>
                         ))}

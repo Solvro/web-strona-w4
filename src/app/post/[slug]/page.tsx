@@ -64,14 +64,16 @@ export default async function PostPage(props: UserPageProps) {
 
                 <div className="relative w-full">
                     <h1 className="text-3xl font-bold">{post.title.rendered}</h1>
-                    <div>
-                        Jan Kowlaski
-                        25.01.2025
+                    {/* Add italic text */}
+                    <div className="text-sm text-gray-500 italic">
+                        Coś TAM autor
+                        &nbsp;&bull;&nbsp;
+                        {new Date(post.date).toLocaleDateString()}
                     </div>
                 </div>
 
-                <div className="prose">
-                    <section className="mt-16" dangerouslySetInnerHTML={{ __html: post.content.rendered }}>
+                <div className="prose mx-auto w-[900px]">
+                    <section className="mt-16 w-full" dangerouslySetInnerHTML={{ __html: post.content.rendered }}>
                     </section>
                 </div>
 
