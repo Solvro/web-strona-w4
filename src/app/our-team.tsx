@@ -3,10 +3,10 @@ import { Member } from "@/types";
 import { env } from "@/env";
 
 export async function OurTeam() {
-  const response = await fetch(env.API_USERS_URL);
+  const response = await fetch(env.API_USERS_URL + "?acf_format=standard");
   if (!response.ok) throw new Error(`Error fetching members: ${response.statusText}`);
 
-  const members: Member[] = (await response.json()).filter((member: Member) => member.is_author);
+  const members: Member[] = (await response.json()).filter((member: Member) => member.is_author).sort((a: Member, b: Member) => a.name.localeCompare(b.name));
 
   return (
     <div className="mt-14">

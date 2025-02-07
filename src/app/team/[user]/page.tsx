@@ -29,7 +29,7 @@ export default async function UserPage(props: UserPageProps) {
         slug: params.user,
     });
 
-    const response = await fetch(env.API_USERS_URL + "&" + requestParams.toString());
+    const response = await fetch(env.API_USERS_URL + "?acf_format=standard&" + requestParams.toString());
     if (!response.ok) throw new Error(`Error fetching members: ${response.statusText}`);
 
     const body = await response.json();

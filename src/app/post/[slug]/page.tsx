@@ -12,7 +12,7 @@ import { HomeIcon } from "@heroicons/react/24/outline";
 
 import { Navbar } from "@/components/Navbar";
 import { env } from "@/env";
-import { Post } from "@/types";
+import { Member, Post } from "@/types";
 import Comments from "./comments";
 import Footer from "@/components/Footer";
 
@@ -29,14 +29,17 @@ export default async function PostPage(props: UserPageProps) {
 
     const response = await fetch(env.API_POSTS_URL + "?" + requestParams.toString());
     if (!response.ok) throw new Error(`Error fetching members: ${response.statusText}`);
-
     const body = await response.json();
     if (!Array.isArray(body) || body.length !== 1) return notFound();
-
     const post: Post = body[0];
 
+    const author = await fetch(env.API_USERS_URL + `?include=${post.author}`);
+    if (!author.ok) throw new Error(`Error fetching author: ${author.statusText}`);
+    const authorBody = await author.json();
+    if (!Array.isArray(authorBody) || authorBody.length !== 1) return notFound();
+    const authorData: Member = authorBody[0];
+
     // TODO: get comments for the post
-    // TODO: get author of the post
     // TODO: create a form to add a comment
 
     return (
@@ -54,7 +57,16 @@ export default async function PostPage(props: UserPageProps) {
                             </BreadcrumbLink>
                         </BreadcrumbItem>
                         <BreadcrumbSeparator />
-                        <BreadcrumbItem>Posts</BreadcrumbItem>
+                        <BreadcrumbItem>Authors</BreadcrumbItem>
+                        <BreadcrumbSeparator />
+                        <BreadcrumbItem>
+                            <BreadcrumbLink asChild>
+                                <Link href={`/team/${authorData.slug}`}>
+                                    {/* <HomeIcon className="size-5 shrink-0" /> */}
+                                    {authorData.name}
+                                </Link>
+                            </BreadcrumbLink>
+                        </BreadcrumbItem>
                         <BreadcrumbSeparator />
                         <BreadcrumbItem>
                             <BreadcrumbPage>{post.title.rendered}</BreadcrumbPage>
@@ -66,7 +78,7 @@ export default async function PostPage(props: UserPageProps) {
                     <h1 className="text-3xl font-bold">{post.title.rendered}</h1>
                     {/* Add italic text */}
                     <div className="text-sm text-gray-500 italic">
-                        Coś TAM autor
+                        {authorData.name}
                         &nbsp;&bull;&nbsp;
                         {new Date(post.date).toLocaleDateString()}
                     </div>
@@ -77,7 +89,7 @@ export default async function PostPage(props: UserPageProps) {
                     </section>
                 </div>
 
-                <Comments postId={post.id}/>
+                <Comments postId={post.id} />
             </main>
 
             <Footer />
