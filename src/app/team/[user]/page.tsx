@@ -147,25 +147,29 @@ export default async function UserPage(props: UserPageProps) {
                     <h2 className="section-header mb-7">Blog and Publications</h2>
 
                     <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-8">
-                        {posts.map((post, index) => (
-                            <div key={index}>
-                                <img
-                                    src={post.fimg_url ? post.fimg_url : "https://i.imgur.com/xrmQYgi.png"}
-                                    alt=""
-                                    className="border w-full object-cover h-40 mb-2 bg-white border-stone-200"
-                                />
+                        {posts.length > 0 ? (
+                            posts.map((post, index) => (
+                                <div key={index}>
+                                    <img
+                                        src={post.fimg_url ? post.fimg_url : "https://i.imgur.com/xrmQYgi.png"}
+                                        alt=""
+                                        className="border w-full object-cover h-40 mb-2 bg-white border-stone-200"
+                                    />
 
-                                <Link href={`/post/${post.slug}`} className="text-lg font-medium leading-tight">
-                                    {post.title.rendered} &bull; {new Date(post.date).toLocaleDateString()}
-                                </Link>
+                                    <Link href={`/post/${post.slug}`} className="text-lg font-medium leading-tight">
+                                        {post.title.rendered} &bull; {new Date(post.date).toLocaleDateString()}
+                                    </Link>
 
-                                <div className="text-sm mt-0.5">
-                                    {/* <span className="font-medium text-brand">Category</span>
+                                    <div className="text-sm mt-0.5">
+                                        {/* <span className="font-medium text-brand">Category</span>
                                     &nbsp;&bull;&nbsp; */}
-                                    <span>{getReadTime(post.content.rendered)} minute read</span>
+                                        <span>{getReadTime(post.content.rendered)} minute read</span>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))
+                        ) : (
+                            <p>No posts yet</p>
+                        )}
                     </div>
                 </section>
             </main>

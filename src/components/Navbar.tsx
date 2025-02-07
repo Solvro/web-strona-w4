@@ -24,7 +24,7 @@ import { Button } from "./ui/button";
 
 export function Navbar() {
   return (
-    <div className="bg-white relative z-20">
+    <div className="bg-transparent relative z-20">
       <nav className="max-w-screen-xl mx-auto py-4 w-full flex flex-row justify-between items-center px-4 select-none">
         <Link href="/">
           <Image
@@ -37,17 +37,17 @@ export function Navbar() {
           <NavigationMenuList>
             <NavigationMenuItem>
               <Link href="/education" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                <NavigationMenuLink className={`${navigationMenuTriggerStyle()} bg-transparent`}>
                   Education
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuTrigger>Department</NavigationMenuTrigger>
+              <NavigationMenuTrigger className="bg-transparent">Department</NavigationMenuTrigger>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <Link href="#contact" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                <NavigationMenuLink className={`${navigationMenuTriggerStyle()} bg-transparent`}>
                   Contact
                 </NavigationMenuLink>
               </Link>
