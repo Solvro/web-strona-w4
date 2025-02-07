@@ -78,7 +78,7 @@ export default async function PostPage(props: UserPageProps) {
                     <h1 className="text-3xl font-bold">{post.title.rendered}</h1>
                     {/* Add italic text */}
                     <div className="text-sm text-gray-500 italic">
-                        {authorData.name}
+                        <Link href={`/team/${authorData.slug}`}>{authorData.name}</Link>
                         &nbsp;&bull;&nbsp;
                         {new Date(post.date).toLocaleDateString()}
                     </div>
