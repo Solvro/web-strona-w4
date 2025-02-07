@@ -1,6 +1,7 @@
 "use client";
 
 import PwrLogo from "@/assets/pwr.png";
+import W4Logo from "@/assets/logo_wit_przezroczyste.png";
 import Image from "next/image";
 import Link from "next/link";
 import { Bars3Icon } from "@heroicons/react/20/solid";
@@ -28,9 +29,9 @@ export function Navbar() {
       <nav className="max-w-screen-xl mx-auto py-4 w-full flex flex-row justify-between items-center px-4 select-none">
         <Link href="/">
           <Image
-            src={PwrLogo}
+            src={W4Logo}
             alt="Emblem of Wroclaw University of Science and Technology"
-            className="w-12 h-auto"
+            className="w-14 h-auto"
           />
         </Link>
         <NavigationMenu className="hidden sm:flex">

@@ -21,7 +21,7 @@ export default async function Comments({ postId }: CommentsProps) {
                     <div key={comment.id} className="mb-8">
                         <div className="flex items-center mb-2">
                             <img src={comment.author_avatar_urls["48"]} alt="" className="w-8 h-8 rounded-full mr-2" />
-                            <span className="font-bold">{comment.author === 0 ? "Anonymous" : comment.author_name}</span>
+                            <span className="font-bold">{comment.author_name === "" ? "Anonymous" : comment.author_name}</span>
                             <span className="text-gray-500 ml-2">{new Date(comment.date).toLocaleDateString()}</span>
                         </div>
                         <div dangerouslySetInnerHTML={{ __html: comment.content.rendered }} />
