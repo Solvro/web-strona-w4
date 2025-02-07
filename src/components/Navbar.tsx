@@ -42,7 +42,7 @@ export function Navbar() {
             <Image
               src={SolvroLogo}
               alt="Solvro logo"
-              className="w-14 h-auto"
+              className="h-14 w-auto"
             />
           </Link>
         </div>
@@ -50,17 +50,17 @@ export function Navbar() {
           <NavigationMenuList>
             <NavigationMenuItem>
               <Link href="/education" legacyBehavior passHref>
-                <NavigationMenuLink className={`${navigationMenuTriggerStyle()} bg-transparent`}>
+                <NavigationMenuLink className={`${navigationMenuTriggerStyle()} bg-transparent hover:bg-red-500/5 transition-all`}>
                   Education
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="bg-transparent">Department</NavigationMenuTrigger>
+              <NavigationMenuTrigger className="bg-transparent hover:bg-red-500/5 transition-all">Department</NavigationMenuTrigger>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <Link href="#contact" legacyBehavior passHref>
-                <NavigationMenuLink className={`${navigationMenuTriggerStyle()} bg-transparent`}>
+                <NavigationMenuLink className={`${navigationMenuTriggerStyle()} bg-transparent hover:bg-red-500/5 transition-all`}>
                   Contact
                 </NavigationMenuLink>
               </Link>
@@ -92,7 +92,7 @@ export function Navbar() {
                   <Image
                     src={SolvroLogo}
                     alt="Solvro logo"
-                    className="w-12 h-auto"
+                    className="h-12 w-auto"
                   />
                 </Link>
               </div>
