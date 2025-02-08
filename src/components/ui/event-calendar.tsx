@@ -41,7 +41,7 @@ function EventCalendar({ className, classNames, ...props }: CalendarProps) {
         ),
         day_range_start: "day-range-start",
         day_range_end: "day-range-end",
-        day_selected: "!bg-brand !text-primary-foreground",
+        day_selected: "!bg-brand !text-primary-foreground dark:!text-white",
         day_today: "bg-accent text-accent-foreground",
         day_outside:
           "day-outside text-muted-foreground aria-selected:bg-accent/50 aria-selected:text-muted-foreground",

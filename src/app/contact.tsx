@@ -33,8 +33,8 @@ export const Contact = () => {
     <section className="relative w-full" id="contact">
       <div className="relative flex flex-col lg:space-x-16 xl:space-x-20 lg:flex-row justify-between mx-auto py-20 max-w-screen-xl w-full px-4">
         <div className="flex-grow">
-          <h2 className="section-header mb-10 md:!text-3xl">Contact</h2>
-          <ul className="bg-stone-50 py-6 px-6 md:py-12 md:px-16">
+          <h2 className="section-header mb-10 md:!text-3xl dark:text-zinc-500">Contact</h2>
+          <ul className="bg-transparent py-6 px-6 md:py-12 md:px-16">
             {contactItems.map((item, index) => (
               <li className="flex items-center mt-5 first-of-type:mt-0" key={index}>
                 <item.icon className="size-6 md:size-8 shrink-0 opacity-60 stroke-2" />

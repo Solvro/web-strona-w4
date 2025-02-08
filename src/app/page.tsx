@@ -8,13 +8,13 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-br  from-red-500/20 via-transparent to-red-500/20 dark:from-white/20 dark:via-transparent dark:to-white/20">
+      <div className="min-h-screen bg-gradient-to-br  from-red-500/20 via-transparent to-red-500/20 dark:from-white/10 dark:via-transparent dark:to-white/10">
         <Navbar />
 
         <main className="pb-32 max-w-screen-xl mx-auto w-full px-4 mt-12">
           <div className="w-full">
             <div>
-              <h1 className="text-4xl font-semibold text-brand">Cyberphysical Systems Laboratory</h1>
+              <h1 className="text-4xl font-semibold text-brand dark:text-zinc-500">Cyberphysical Systems Laboratory</h1>
 
               <p className="mt-3">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias natus quos minus esse
