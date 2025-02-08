@@ -83,7 +83,7 @@ export default async function PostPage(props: UserPageProps) {
                     </div>
                 </div>
 
-                <div className="prose mx-auto w-[900px]">
+                <div className="prose-lg dark:prose-invert mx-auto">
                     <section className="mt-16 w-full" dangerouslySetInnerHTML={{ __html: post.content.rendered }}>
                     </section>
                 </div>
