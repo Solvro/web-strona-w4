@@ -39,7 +39,6 @@ export default async function PostPage(props: UserPageProps) {
     if (!Array.isArray(authorBody) || authorBody.length !== 1) return notFound();
     const authorData: Member = authorBody[0];
 
-    // TODO: get comments for the post
     // TODO: create a form to add a comment
 
     return (

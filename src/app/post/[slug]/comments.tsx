@@ -13,7 +13,7 @@ export default async function Comments({ postId }: CommentsProps) {
   const rootComments = comments.filter(comment => comment.parent === 0);
   const replies = comments.filter(comment => comment.parent !== 0);
 
-  //TODO: add form
+  // TODO: add form
 
   return (
     <div className="mt-14">

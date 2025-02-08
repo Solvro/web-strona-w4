@@ -25,6 +25,7 @@ export async function Seminars() {
   };
 
   if (seminars.length <= 0) return null;
+  
   return (
     <div className="mt-6 w-full mx-auto flex flex-col lg:flex-row items-center justify-center space-y-4 lg:space-y-0 lg:space-x-4">
       <Carousel className="bg-brand text-white px-4 py-6 w-full rounded-2xl">
@@ -34,12 +35,12 @@ export async function Seminars() {
           {seminars.map((seminar, index) => (
             <CarouselItem key={index}>
               <div className="p-1">
-                <h4 className="font-medium text-xl text-center mb-1.5">{seminar.title}</h4>
+                <h4 className="font-medium text-xl text-center mb-1.5" dangerouslySetInnerHTML={{ __html:seminar.title }}></h4>
 
                 {seminar.description && (
                   <p
                     className="opacity-80 text-sm leading-tight"
-                    dangerouslySetInnerHTML={{ __html: truncate(seminar.description, 300) }}
+                    dangerouslySetInnerHTML={{ __html: truncate(seminar.description, 700) }}
                   ></p>
                 )}
 

@@ -8,7 +8,7 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-br from-red-500/20 via-transparent to-red-500/20">
+      <div className="min-h-screen bg-gradient-to-br  from-red-500/20 via-transparent to-red-500/20 dark:from-white/20 dark:via-transparent dark:to-white/20">
         <Navbar />
 
         <main className="pb-32 max-w-screen-xl mx-auto w-full px-4 mt-12">
