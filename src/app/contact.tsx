@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import { EnvelopeIcon, MapPinIcon, PhoneIcon } from "@heroicons/react/24/outline";
 
-const Map = dynamic(() => import("./map"), { ssr: false });
+const Map = dynamic(() => import("./Map"), { ssr: false });
 
 const contactItems = [
   {

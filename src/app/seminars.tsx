@@ -7,17 +7,15 @@ import {
 } from "@/components/ui/carousel";
 import { Seminar } from "@/types";
 import { env } from "@/env";
-import { SeminarCalendar } from "./seminar-calendar";
+import { SeminarCalendar } from "./SeminarCalendar";
 import { BlurredCircle } from "./BlurredCircle";
 
 export async function Seminars() {
   const response = await fetch(env.API_EVENTS_URL);
-  const seminars: Seminar[] = (await response.json())["events"].map(
-    (seminar: Seminar) => {
-      seminar.start_date = new Date(seminar.start_date);
-      return seminar;
-    }
-  );
+  const seminars: Seminar[] = (await response.json())["events"].map((seminar: Seminar) => {
+    seminar.start_date = new Date(seminar.start_date);
+    return seminar;
+  });
 
   const truncate = (text: string, maxLength: number) => {
     const l = text.length;
@@ -38,9 +36,7 @@ export async function Seminars() {
             {seminars.map((seminar, index) => (
               <CarouselItem key={index}>
                 <div className="p-1">
-                  <h4 className="font-medium text-xl text-center mb-1.5">
-                    {seminar.title}
-                  </h4>
+                  <h4 className="font-medium text-xl text-center mb-1.5">{seminar.title}</h4>
 
                   {seminar.description && (
                     <p

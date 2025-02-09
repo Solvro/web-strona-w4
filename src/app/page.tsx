@@ -1,8 +1,8 @@
 import { Navbar } from "@/components/Navbar";
-import { Seminars } from "./seminars";
-import { OurTeam } from "./our-team";
-import { ResearchFocus } from "./research-focus";
-import { Contact } from "./contact";
+import { Seminars } from "./Seminars";
+import { OurTeam } from "./OurTeam";
+import { ResearchFocus } from "./ResearchFocus";
+import { Contact } from "./Contact";
 import Footer from "@/components/Footer";
 
 export default function Home() {
