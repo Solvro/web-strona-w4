@@ -1,15 +1,16 @@
 import React from "react";
 
-export function DependsOn({
+export function DependsOn<As extends React.ElementType = "div">({
   dependents,
   children,
-  as = React.Fragment,
+  as,
+  ...props
 }: {
   children: React.ReactNode[];
   dependents: unknown[];
-  as?: React.ElementType;
-}) {
+  as?: As;
+} & React.ComponentPropsWithoutRef<As>) {
   if (!dependents.every(Boolean)) return null;
-  const As = as;
-  return <As>{children}</As>;
+  const Component = as || "div";
+  return <Component {...props}>{children}</Component>;
 }

@@ -71,8 +71,15 @@ export default async function UserPage(props: UserPageProps) {
                   </div>
                 )}
 
-                <div className="card space-y-5">
-                  <DependsOn dependents={[member.acf.contact, member.acf.consultations]} as="div">
+                <DependsOn
+                  dependents={[
+                    member.acf.contact,
+                    member.acf.consultations,
+                    member.acf.consultations,
+                  ]}
+                  className="card space-y-5"
+                >
+                  <DependsOn dependents={[member.acf.contact, member.acf.consultations]}>
                     <h3 className="text-lg font-medium mb-1 leading-tight">Contact</h3>
                     <ul className="space-y-2">
                       <li className="flex items-center text-sm">
@@ -86,7 +93,7 @@ export default async function UserPage(props: UserPageProps) {
                     </ul>
                   </DependsOn>
 
-                  <DependsOn dependents={[member.acf.consultations]} as="div">
+                  <DependsOn dependents={[member.acf.consultations]}>
                     <h3 className="text-lg font-medium mb-1 leading-tight">Consultations</h3>
                     <div>
                       <div className="flex items-center text-sm">
@@ -95,7 +102,7 @@ export default async function UserPage(props: UserPageProps) {
                       </div>
                     </div>
                   </DependsOn>
-                </div>
+                </DependsOn>
               </div>
             </div>
           </div>
