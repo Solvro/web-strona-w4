@@ -1,19 +1,12 @@
 import React from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { EnvelopeIcon, HomeIcon, MapPinIcon, PhoneIcon } from "@heroicons/react/24/outline";
+import { EnvelopeIcon, MapPinIcon, PhoneIcon } from "@heroicons/react/24/outline";
 
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
 import { Navbar } from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { DependsOn } from "@/components/DependsOn";
+import { Path } from "@/components/Path";
 import { env } from "@/env";
 import { Member, Post } from "@/types";
 
@@ -46,23 +39,7 @@ export default async function UserPage(props: UserPageProps) {
       <Navbar />
 
       <main className="pb-32 max-w-screen-xl mx-auto w-full px-4 pt-6">
-        <Breadcrumb className="mb-10">
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink asChild>
-                <Link href="/">
-                  <HomeIcon className="size-5 shrink-0" />
-                </Link>
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>Authors</BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbPage>{member.name}</BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
+        <Path path={["Authors", member.name]} className="mb-10" />
 
         <div className="relative w-full">
           <div className="flex flex-col md:flex-row md:space-x-4 relative z-10">

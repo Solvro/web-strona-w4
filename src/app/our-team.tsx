@@ -3,9 +3,7 @@ import { Member } from "@/types";
 import { env } from "@/env";
 
 export async function OurTeam() {
-  const response = await fetch(env.API_USERS_URL);
-  if (!response.ok) throw new Error(`Error fetching members: ${response.statusText}`);
-
+  const response = await fetch(env.API_USERS_URL + "?acf_format=standard");
   const members: Member[] = (await response.json()).filter((member: Member) => member.is_author);
 
   return (
@@ -19,10 +17,10 @@ export async function OurTeam() {
                 <div className="size-20 border-[3px] mx-auto mb-1 border-brand rounded-full">
                   <img
                     src={
-                      member.acf.profileImage || member.avatar_urls[96] ||
+                      member.acf.profileImage ||
+                      member.avatar_urls[96] ||
                       `https://ui-avatars.com/api/?background=cf6967&color=fff&name=${member.name}`
                     }
-                    alt=""
                     className="rounded-full size-full object-cover"
                   />
                 </div>

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import researchFocusAsset from "../assets/research-focus.jpeg";
+import { BlurredCircle } from "./BlurredCircle";
 
 const elements = [
   {
@@ -49,11 +50,14 @@ export function ResearchFocus() {
             </li>
           ))}
         </ul>
-        <Image
-          src={researchFocusAsset}
-          alt="Laboratory equipment"
-          className="hidden md:block w-full max-w-96 h-auto self-center rounded-md shadow-md"
-        />
+        <div className="relative hidden md:block w-full max-w-96 self-center">
+          <Image
+            src={researchFocusAsset}
+            alt="Laboratory equipment"
+            className="relative z-10 w-full h-auto rounded-md shadow-md"
+          />
+          <BlurredCircle />
+        </div>
       </div>
     </div>
   );

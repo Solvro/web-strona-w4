@@ -24,6 +24,7 @@ export default function Home() {
 
           {/* <div className="mt-6 w-full flex flex-col lg:flex-row items-center justify-center space-y-4 lg:space-y-0 lg:space-x-4"> */}
           <Seminars />
+
           {/* <Events events={events} /> */}
           {/* </div> */}
         </div>
