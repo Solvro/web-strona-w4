@@ -2,16 +2,12 @@ import { env } from "@/env";
 import { cn } from "@/lib/utils";
 import { Comment as _Comment } from "@/types";
 
-type CommentsProps = {
-  postId: number;
-};
-
-export default async function Comments({ postId }: CommentsProps) {
+export default async function Comments({ postId }: { postId: number }) {
   const params = new URLSearchParams({
     post: postId.toString(),
   });
-  const response = await fetch(env.API_COMMENTS_URL + "?" + params.toString());
 
+  const response = await fetch(env.API_COMMENTS_URL + "?" + params.toString());
   const comments: _Comment[] = await response.json();
   const rootComments = comments.filter((comment) => comment.parent === 0);
 
