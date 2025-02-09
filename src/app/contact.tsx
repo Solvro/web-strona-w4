@@ -28,7 +28,7 @@ const contactItems = [
   },
 ];
 
-export const Contact = () => {
+export function Contact() {
   return (
     <section className="relative w-full" id="contact">
       <div className="relative flex flex-col lg:space-x-16 xl:space-x-20 lg:flex-row justify-between mx-auto py-20 max-w-screen-xl w-full px-4">
@@ -49,4 +49,4 @@ export const Contact = () => {
       </div>
     </section>
   );
-};
+}

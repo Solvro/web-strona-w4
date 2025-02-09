@@ -41,17 +41,9 @@ function Comment({
   const replies = context.filter((c) => c.parent === comment.id);
 
   return (
-    <div
-      className={cn(
-        "ml-2 md:ml-4 mb-4",
-        depth > 0 && "pl-4 border-l border-gray-300"
-      )}
-    >
+    <div className={cn("ml-2 md:ml-4 mb-4", depth > 0 && "pl-4 border-l border-secondary")}>
       <div className="flex items-center mb-2">
-        <img
-          src={comment.author_avatar_urls["48"]}
-          className="w-8 h-8 rounded-full mr-2"
-        />
+        <img src={comment.author_avatar_urls["48"]} className="w-8 h-8 rounded-full mr-2" />
         <span className="font-bold">
           {comment.author === 0 ? "Anonymous" : comment.author_name}
         </span>
@@ -62,14 +54,9 @@ function Comment({
 
       <div dangerouslySetInnerHTML={{ __html: comment.content.rendered }} />
 
-      <div>
+      <div className="mt-2">
         {replies.map((reply) => (
-          <Comment
-            key={reply.id}
-            comment={reply}
-            context={context}
-            depth={depth + 1}
-          />
+          <Comment key={reply.id} comment={reply} context={context} depth={depth + 1} />
         ))}
       </div>
     </div>

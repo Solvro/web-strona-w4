@@ -14,22 +14,12 @@ type UserPageProps = {
 
 export default async function PostPage(props: UserPageProps) {
   const params = await props.params;
+  const id = params.slug.split("-").pop();
 
-  const requestParams = new URLSearchParams({
-    slug: params.slug,
-  });
+  let response = await fetch(`${env.API_POSTS_URL}/${id}`);
+  const post: Post = await response.json();
 
-  let response = await fetch(
-    env.API_POSTS_URL + "?" + requestParams.toString()
-  );
-  const body = await response.json();
-  if (!Array.isArray(body) || body.length !== 1) return notFound();
-
-  const post: Post = body[0];
-
-  response = await fetch(
-    env.API_USERS_URL + "/" + post.author + "?acf_format=standard"
-  );
+  response = await fetch(`${env.API_USERS_URL}/${post.author}?acf_format=standard`);
   const author: Member = await response.json();
 
   // TODO: create a form to add a comment
@@ -44,10 +34,7 @@ export default async function PostPage(props: UserPageProps) {
         <div className="relative w-full">
           <h1 className="text-3xl font-bold">{post.title.rendered}</h1>
           <div>
-            <Link
-              href={`/team/${author.slug}`}
-              className="text-brand font-medium"
-            >
+            <Link href={`/team/${author.slug}-${author.id}`} className="text-brand font-medium">
               {author.name}
             </Link>{" "}
             &bull;{" "}

@@ -12,7 +12,7 @@ export async function OurTeam() {
       <ul className="mt-3 mb-6 sm:px-12 lg:px-0 flex flex-row gap-3 justify-center flex-wrap">
         {members.map((member, index) => (
           <li key={index}>
-            <Link href={`/team/${member.slug}`}>
+            <Link href={`/team/${member.slug}-${member.id}`}>
               <div className="mx-auto text-center w-[100px] flex-shrink mb-2">
                 <div className="size-20 border-[3px] mx-auto mb-1 border-brand rounded-full">
                   <img

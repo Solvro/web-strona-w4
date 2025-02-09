@@ -18,17 +18,11 @@ type UserPageProps = {
 
 export default async function UserPage(props: UserPageProps) {
   const params = await props.params;
+  const id = params.user.split("-").pop();
 
-  const requestParams = new URLSearchParams({
-    acf_format: "standard",
-    slug: params.user,
-  });
+  const response = await fetch(`${env.API_USERS_URL}/${id}?acf_format=standard`);
+  const member: Member = await response.json();
 
-  const response = await fetch(env.API_USERS_URL + "?" + requestParams.toString());
-  const body = await response.json();
-  if (!Array.isArray(body) || body.length === 0) return notFound();
-
-  const member: Member = body[0];
   if (!member.is_author) return notFound();
 
   const postsResponse = await fetch(env.API_POSTS_URL + "?author=" + member.id);
@@ -72,7 +66,9 @@ export default async function UserPage(props: UserPageProps) {
                     <h3 className="text-lg font-medium mb-1">Academic background</h3>
                     <div
                       className="text-sm"
-                      dangerouslySetInnerHTML={{ __html: member.acf.academicHistory }}
+                      dangerouslySetInnerHTML={{
+                        __html: member.acf.academicHistory,
+                      }}
                     />
                   </div>
                 )}
@@ -122,7 +118,10 @@ export default async function UserPage(props: UserPageProps) {
                     className="border w-full object-cover h-40 mb-2 bg-secondary border-stone-200"
                   />
 
-                  <Link href={`/post/${post.slug}`} className="text-lg font-medium leading-tight">
+                  <Link
+                    href={`/post/${post.slug}-${post.id}`}
+                    className="text-lg font-medium leading-tight"
+                  >
                     {post.title.rendered} &bull; {new Date(post.date).toLocaleDateString()}
                   </Link>
 
