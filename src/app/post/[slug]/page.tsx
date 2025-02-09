@@ -19,13 +19,17 @@ export default async function PostPage(props: UserPageProps) {
     slug: params.slug,
   });
 
-  let response = await fetch(env.API_POSTS_URL + "?" + requestParams.toString());
+  let response = await fetch(
+    env.API_POSTS_URL + "?" + requestParams.toString()
+  );
   const body = await response.json();
   if (!Array.isArray(body) || body.length !== 1) return notFound();
 
   const post: Post = body[0];
 
-  response = await fetch(env.API_USERS_URL + "/" + post.author + "?acf_format=standard");
+  response = await fetch(
+    env.API_USERS_URL + "/" + post.author + "?acf_format=standard"
+  );
   const author: Member = await response.json();
 
   // TODO: get comments for the post
@@ -42,9 +46,13 @@ export default async function PostPage(props: UserPageProps) {
         <div className="relative w-full">
           <h1 className="text-3xl font-bold">{post.title.rendered}</h1>
           <div>
-            <Link href={`/team/${author.slug}`} className="text-brand">
+            <Link
+              href={`/team/${author.slug}`}
+              className="text-brand font-medium"
+            >
               {author.name}
             </Link>{" "}
+            &bull;{" "}
             <span>
               {new Date(post.date).toLocaleDateString("pl", {
                 year: "numeric",

@@ -1,4 +1,7 @@
+import { Fragment } from "react";
 import Link from "next/link";
+import { HomeIcon } from "lucide-react";
+
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -7,7 +10,6 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "./ui/breadcrumb";
-import { HomeIcon } from "lucide-react";
 
 type Path = (
   | {
@@ -31,18 +33,20 @@ export function Path({ path, className }: { path: Path; className?: string }) {
         <BreadcrumbSeparator />
 
         {path.map((part, i) => (
-          <>
-            <BreadcrumbItem key={i}>
+          <Fragment key={i}>
+            <BreadcrumbItem>
               {typeof part !== "string" && part.destination ? (
                 <BreadcrumbLink asChild>
                   <Link href={part.destination}>{part.name}</Link>
                 </BreadcrumbLink>
               ) : (
-                <BreadcrumbPage>{typeof part === "string" ? part : part.name}</BreadcrumbPage>
+                <BreadcrumbPage>
+                  {typeof part === "string" ? part : part.name}
+                </BreadcrumbPage>
               )}
             </BreadcrumbItem>
             {i < path.length - 1 && <BreadcrumbSeparator />}
-          </>
+          </Fragment>
         ))}
       </BreadcrumbList>
     </Breadcrumb>
