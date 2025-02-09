@@ -27,10 +27,11 @@ export default async function UserPage(props: UserPageProps) {
   const params = await props.params;
 
   const requestParams = new URLSearchParams({
+    acf_format: "standard",
     slug: params.user,
   });
 
-  const response = await fetch(env.API_USERS_URL + "&" + requestParams.toString());
+  const response = await fetch(env.API_USERS_URL + "?" + requestParams.toString());
   const body = await response.json();
   if (!Array.isArray(body) || body.length === 0) return notFound();
 
