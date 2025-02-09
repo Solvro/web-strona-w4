@@ -28,13 +28,13 @@ const elements = [
 export function ResearchFocus() {
   return (
     <div className="mt-24">
-      <h2 className="section-header dark:text-zinc-500">Our Research Focus</h2>
+      <h2 className="section-header">Our Research Focus</h2>
       <div className="md:grid grid-cols-3 lg:grid-cols-2 gap-8">
         <ul className="sm:px-12 mt-8 col-span-2 lg:col-span-1">
           {elements.map((element, index) => (
             <li key={index} className="flex flex-row space-x-8 items-center min-h-[120px]">
               <div className="hidden size-20 overflow-hidden sm:flex flex-row flex-shrink-0">
-                <span className="text-[#B8B8B8] font-poppins text-[100px] leading-none -ml-10 font-medium">
+                <span className="text-[#B8B8B8] font-poppins text-[100px] leading-[7.5rem] -ml-10 font-medium">
                   {String(index + 1).padStart(2, "0")}
                 </span>
               </div>

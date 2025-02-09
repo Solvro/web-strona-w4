@@ -14,7 +14,7 @@ export default function Home() {
         <main className="pb-32 max-w-screen-xl mx-auto w-full px-4 mt-12">
           <div className="w-full">
             <div>
-              <h1 className="text-4xl font-semibold text-brand dark:text-zinc-500">Cyberphysical Systems Laboratory</h1>
+              <h1 className="text-4xl font-semibold text-brand dark:text-[#b8b8b8]">Cyberphysical Systems Laboratory</h1>
 
               <p className="mt-3">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias natus quos minus esse

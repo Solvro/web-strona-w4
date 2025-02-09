@@ -44,7 +44,8 @@ body {
     --radius: 0.5rem;
   }
   .dark {
-    --background: 240 10% 3.9%;
+    /* --background: 240 10% 3.9%; */
+    --background: 0 0% 11%;
     --foreground: 0 0% 98%;
     --card: 240 10% 3.9%;
     --card-foreground: 0 0% 98%;
@@ -82,7 +83,7 @@ body {
 
 .section-header {
   --dash: #787878;
-  @apply text-brand font-medium text-2xl;
+  @apply text-brand font-medium text-2xl dark:text-[#b8b8b8];
 }
 
 .section-header::before {
