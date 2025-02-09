@@ -12,10 +12,12 @@ import { BlurredCircle } from "./BlurredCircle";
 
 export async function Seminars() {
   const response = await fetch(env.API_EVENTS_URL);
-  const seminars: Seminar[] = (await response.json())["events"].map((seminar: Seminar) => {
-    seminar.start_date = new Date(seminar.start_date);
-    return seminar;
-  });
+  const seminars: Seminar[] = (await response.json())["events"].map(
+    (seminar: Seminar) => {
+      seminar.start_date = new Date(seminar.start_date);
+      return seminar;
+    }
+  );
 
   const truncate = (text: string, maxLength: number) => {
     const l = text.length;
@@ -28,7 +30,7 @@ export async function Seminars() {
   if (seminars.length <= 0) return null;
   return (
     <div className="mt-6 w-full mx-auto flex flex-col lg:flex-row items-center justify-center space-y-4 lg:space-y-0 lg:space-x-4">
-      <div className="relative">
+      <div className="relative max-w-full">
         <Carousel className="bg-brand text-white px-4 py-6 w-full rounded-2xl relative z-10">
           <CarouselPrevious />
 
@@ -36,12 +38,16 @@ export async function Seminars() {
             {seminars.map((seminar, index) => (
               <CarouselItem key={index}>
                 <div className="p-1">
-                  <h4 className="font-medium text-xl text-center mb-1.5">{seminar.title}</h4>
+                  <h4 className="font-medium text-xl text-center mb-1.5">
+                    {seminar.title}
+                  </h4>
 
                   {seminar.description && (
                     <p
                       className="opacity-80 text-sm leading-tight"
-                      dangerouslySetInnerHTML={{ __html: truncate(seminar.description, 300) }}
+                      dangerouslySetInnerHTML={{
+                        __html: truncate(seminar.description, 300),
+                      }}
                     ></p>
                   )}
 
