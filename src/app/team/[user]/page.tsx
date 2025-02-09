@@ -20,13 +20,11 @@ export default async function UserPage(props: UserPageProps) {
   const params = await props.params;
   const id = params.user.split("-").pop();
 
-  const response = await fetch(`${env.API_USERS_URL}/${id}?acf_format=standard`);
-  const member: Member = await response.json();
-
+  const [member, posts]: [Member, Post[]] = await Promise.all([
+    fetch(`${env.API_USERS_URL}/${id}?acf_format=standard`).then((res) => res.json()),
+    fetch(`${env.API_POSTS_URL}?author=${id}`).then((res) => res.json()),
+  ]);
   if (!member.is_author) return notFound();
-
-  const postsResponse = await fetch(env.API_POSTS_URL + "?author=" + member.id);
-  const posts: Post[] = await postsResponse.json();
 
   return (
     <>
