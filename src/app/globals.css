@@ -102,6 +102,12 @@ body {
   @apply text-brand font-medium text-2xl;
 }
 
+@media (prefers-color-scheme: dark) {
+  .section-header {
+    --dash: hsl(var(--secondary-foreground));
+  }
+}
+
 .section-header::before {
   content: "";
   vertical-align: middle;

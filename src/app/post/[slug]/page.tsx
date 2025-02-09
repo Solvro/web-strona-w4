@@ -32,8 +32,6 @@ export default async function PostPage(props: UserPageProps) {
   );
   const author: Member = await response.json();
 
-  // TODO: get comments for the post
-  // TODO: get author of the post
   // TODO: create a form to add a comment
 
   return (

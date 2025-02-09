@@ -84,7 +84,7 @@ export function Navbar() {
                   Department
                 </Link>
                 <Link
-                  href="#contact"
+                  href="/#contact"
                   className="font-medium py-1 px-2 hover:opacity-90 rounded-md block text-left"
                 >
                   Contact
