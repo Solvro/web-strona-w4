@@ -61,31 +61,31 @@ export function Navbar() {
               <span className="text-sm font-medium">Menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent>
+          <SheetContent className="z-[9999]">
             <SheetHeader>
               <SheetTitle>
                 <Image
                   src={WitLogo}
-                  alt="Emblem of Wroclaw University of Science and Technology"
+                  alt="Emblem of Wroclaw University of Science and Technology WIT"
                   className="w-12 h-auto"
                 />
               </SheetTitle>
-              <SheetDescription className="pt-6">
+              <SheetDescription className="pt-6 dark:text-white">
                 <Link
                   href="/education"
-                  className="text-black font-medium py-1 px-2 hover:bg-stone-50 rounded-md block text-left"
+                  className="font-medium py-1 px-2 hover:opacity-90 rounded-md block text-left"
                 >
                   Education
                 </Link>
                 <Link
                   href="/department"
-                  className="text-black font-medium py-1 px-2 hover:bg-stone-50 rounded-md block text-left"
+                  className="font-medium py-1 px-2 hover:opacity-90 rounded-md block text-left"
                 >
                   Department
                 </Link>
                 <Link
                   href="#contact"
-                  className="text-black font-medium py-1 px-2 hover:bg-stone-50 rounded-md block text-left"
+                  className="font-medium py-1 px-2 hover:opacity-90 rounded-md block text-left"
                 >
                   Contact
                 </Link>

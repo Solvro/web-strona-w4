@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import Link from "next/link";
 
 import { Navbar } from "@/components/Navbar";
 import { env } from "@/env";
@@ -6,7 +7,6 @@ import { Member, Post } from "@/types";
 import Comments from "./comments";
 import Footer from "@/components/Footer";
 import { Path } from "@/components/Path";
-import Link from "next/link";
 
 type UserPageProps = {
   params: Promise<{ slug: string }>;

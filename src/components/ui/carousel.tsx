@@ -172,7 +172,10 @@ const CarouselPrevious = React.forwardRef<HTMLButtonElement, React.ComponentProp
         ref={ref}
         variant={variant}
         size={size}
-        className={cn("h-8 w-8 rounded-full flex-shrink-0", className)}
+        className={cn(
+          "h-8 w-8 rounded-full flex-shrink-0 bg-white border-white hover:opacity-90 hover:bg-white",
+          className
+        )}
         disabled={!canScrollPrev}
         onClick={scrollPrev}
         {...props}
@@ -194,7 +197,10 @@ const CarouselNext = React.forwardRef<HTMLButtonElement, React.ComponentProps<ty
         ref={ref}
         variant={variant}
         size={size}
-        className={cn("h-8 w-8 rounded-full flex-shrink-0", className)}
+        className={cn(
+          "h-8 w-8 rounded-full flex-shrink-0 bg-white border-white hover:opacity-90 hover:bg-white",
+          className
+        )}
         disabled={!canScrollNext}
         onClick={scrollNext}
         {...props}

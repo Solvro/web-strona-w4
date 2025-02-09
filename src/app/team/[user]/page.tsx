@@ -51,7 +51,7 @@ export default async function UserPage(props: UserPageProps) {
                   `https://ui-avatars.com/api/?background=cf6967&color=fff&name=${member.name}`
                 }
                 alt={`${member.name}'s avatar`}
-                className="object-contain mx-auto w-[240px] h-[320px] rounded-sm shadow-sm bg-stone-100"
+                className="object-contain mx-auto w-[240px] h-[320px] rounded-sm shadow-sm bg-secondary"
               />
               <div className="mt-4 text-center leading-4">
                 <p>{member.acf.titlePrefix}</p>
@@ -119,7 +119,7 @@ export default async function UserPage(props: UserPageProps) {
                   <img
                     src="https://i.imgur.com/xrmQYgi.png"
                     alt=""
-                    className="border w-full object-cover h-40 mb-2 bg-white border-stone-200"
+                    className="border w-full object-cover h-40 mb-2 bg-secondary border-stone-200"
                   />
 
                   <Link href={`/post/${post.slug}`} className="text-lg font-medium leading-tight">
@@ -129,7 +129,7 @@ export default async function UserPage(props: UserPageProps) {
                   <div className="text-sm mt-0.5">
                     <span className="font-medium text-brand">Category</span>
                     &nbsp;&bull;&nbsp;
-                    <span>8 minute read</span>
+                    <span>{computeReadTime(post.content.rendered)} minute read</span>
                   </div>
                 </div>
               ))}
@@ -141,4 +141,8 @@ export default async function UserPage(props: UserPageProps) {
       <Footer />
     </>
   );
+}
+
+function computeReadTime(content: string) {
+  return Math.ceil(content.replaceAll(/<[^>]*>/gm, "").split(" ").length / 200);
 }
