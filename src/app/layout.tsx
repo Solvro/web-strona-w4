@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Roboto, Poppins } from "next/font/google";
+import { ThemeProvider } from "@/components/ThemeSwitch";
+
 import "./globals.css";
 
 const roboto = Roboto({
@@ -25,8 +27,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${roboto.className} ${poppins.variable} antialiased`}>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${roboto.className} ${poppins.variable} antialiased`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="w-full overflow-x-hidden">{children}</div>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

@@ -21,6 +21,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Button } from "./ui/button";
+import { ThemeSwitch } from "./ThemeSwitch";
 
 export function Navbar() {
   return (
@@ -52,15 +53,21 @@ export function Navbar() {
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
+            <NavigationMenuItem className="!ml-4">
+              <ThemeSwitch />
+            </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
         <Sheet>
-          <SheetTrigger asChild>
-            <Button variant="outline" className="sm:hidden">
-              <Bars3Icon className="size-6" />
-              <span className="text-sm font-medium">Menu</span>
-            </Button>
-          </SheetTrigger>
+          <div className="flex flex-row justify-end space-x-2 sm:hidden">
+            <ThemeSwitch />
+            <SheetTrigger asChild>
+              <Button variant="outline">
+                <Bars3Icon className="size-6" />
+                <span className="text-sm font-medium">Menu</span>
+              </Button>
+            </SheetTrigger>
+          </div>
           <SheetContent className="z-[9999]">
             <SheetHeader>
               <SheetTitle>

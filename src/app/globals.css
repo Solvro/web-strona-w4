@@ -2,60 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 3.7% 15.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+.dark:root {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --card: 240 3.7% 15.9%;
+  --card-foreground: 0 0% 98%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 0 0% 98%;
+  --primary-foreground: 240 5.9% 10%;
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --accent: 240 3.7% 15.9%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --ring: 240 4.9% 83.9%;
+  --chart-1: 220 70% 50%;
+  --chart-2: 160 60% 45%;
+  --chart-3: 30 80% 55%;
+  --chart-4: 280 65% 60%;
+  --chart-5: 340 75% 55%;
 
-    .prose {
-      --tw-prose-body: var(--tw-prose-invert-body);
-      --tw-prose-headings: var(--tw-prose-invert-headings);
-      --tw-prose-lead: var(--tw-prose-invert-lead);
-      --tw-prose-links: var(--tw-prose-invert-links);
-      --tw-prose-bold: var(--tw-prose-invert-bold);
-      --tw-prose-counters: var(--tw-prose-invert-counters);
-      --tw-prose-bullets: var(--tw-prose-invert-bullets);
-      --tw-prose-hr: var(--tw-prose-invert-hr);
-      --tw-prose-quotes: var(--tw-prose-invert-quotes);
-      --tw-prose-quote-borders: var(--tw-prose-invert-quote-borders);
-      --tw-prose-captions: var(--tw-prose-invert-captions);
-      --tw-prose-kbd: var(--tw-prose-invert-kbd);
-      --tw-prose-kbd-shadows: var(--tw-prose-invert-kbd-shadows);
-      --tw-prose-code: var(--tw-prose-invert-code);
-      --tw-prose-pre-code: var(--tw-prose-invert-pre-code);
-      --tw-prose-pre-bg: var(--tw-prose-invert-pre-bg);
-      --tw-prose-th-borders: var(--tw-prose-invert-th-borders);
-      --tw-prose-td-borders: var(--tw-prose-invert-td-borders);
-    }
+  .prose {
+    --tw-prose-body: var(--tw-prose-invert-body);
+    --tw-prose-headings: var(--tw-prose-invert-headings);
+    --tw-prose-lead: var(--tw-prose-invert-lead);
+    --tw-prose-links: var(--tw-prose-invert-links);
+    --tw-prose-bold: var(--tw-prose-invert-bold);
+    --tw-prose-counters: var(--tw-prose-invert-counters);
+    --tw-prose-bullets: var(--tw-prose-invert-bullets);
+    --tw-prose-hr: var(--tw-prose-invert-hr);
+    --tw-prose-quotes: var(--tw-prose-invert-quotes);
+    --tw-prose-quote-borders: var(--tw-prose-invert-quote-borders);
+    --tw-prose-captions: var(--tw-prose-invert-captions);
+    --tw-prose-kbd: var(--tw-prose-invert-kbd);
+    --tw-prose-kbd-shadows: var(--tw-prose-invert-kbd-shadows);
+    --tw-prose-code: var(--tw-prose-invert-code);
+    --tw-prose-pre-code: var(--tw-prose-invert-pre-code);
+    --tw-prose-pre-bg: var(--tw-prose-invert-pre-bg);
+    --tw-prose-th-borders: var(--tw-prose-invert-th-borders);
+    --tw-prose-td-borders: var(--tw-prose-invert-td-borders);
   }
 }
 
 html,
 body {
   font-family: Roboto, Arial, Helvetica, sans-serif;
-  overflow-x: hidden;
 }
 
 @layer base {
@@ -102,10 +99,8 @@ body {
   @apply text-brand font-medium text-2xl;
 }
 
-@media (prefers-color-scheme: dark) {
-  .section-header {
-    --dash: hsl(var(--secondary-foreground));
-  }
+.dark .section-header {
+  --dash: hsl(var(--muted-foreground));
 }
 
 .section-header::before {

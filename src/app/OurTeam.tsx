@@ -4,7 +4,9 @@ import { env } from "@/env";
 
 export async function OurTeam() {
   const response = await fetch(env.API_USERS_URL + "?acf_format=standard");
-  const members: Member[] = (await response.json()).filter((member: Member) => member.is_author);
+  const members = ((await response.json()) as Member[])
+    .filter((member) => member.is_author)
+    .sort((a, b) => a.name.localeCompare(b.name));
 
   return (
     <div className="mt-14">
