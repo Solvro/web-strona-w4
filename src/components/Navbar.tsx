@@ -1,9 +1,9 @@
 "use client";
 
-import WitLogo from "@/assets/wit-logo.svg";
 import Image from "next/image";
 import Link from "next/link";
-import { Bars3Icon } from "@heroicons/react/20/solid";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/20/solid";
+
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -23,17 +23,28 @@ import {
 import { Button } from "./ui/button";
 import { ThemeSwitch } from "./ThemeSwitch";
 
+import WitLogo from "@/assets/wit-logo.svg";
+import SolvroLogo from "@/assets/solvro.png";
+
 export function Navbar() {
   return (
     <div className="relative z-20">
       <nav className="max-w-screen-xl mx-auto py-4 w-full flex flex-row justify-between items-center px-4 select-none">
-        <Link href="/">
-          <Image
-            src={WitLogo}
-            alt="Emblem of Wroclaw University of Science and Technology"
-            className="w-12 h-auto"
-          />
-        </Link>
+        <div className="flex items-center gap-1">
+          <Link href="/">
+            <Image
+              src={WitLogo}
+              alt="Emblem of Faculty of Information and Communication Technology"
+              className="w-14 h-auto"
+            />
+          </Link>
+
+          <XMarkIcon className="size-6" />
+
+          <a href="https://solvro.pwr.edu.pl" target="_blank" rel="noopener noreferrer">
+            <Image src={SolvroLogo} alt="Solvro logo" className="h-14 w-auto" />
+          </a>
+        </div>
         <NavigationMenu className="hidden sm:flex">
           <NavigationMenuList>
             <NavigationMenuItem>
