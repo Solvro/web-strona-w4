@@ -56,7 +56,7 @@ export default async function PostPage(props: UserPageProps) {
           dangerouslySetInnerHTML={{ __html: post.content.rendered }}
         />
 
-        <Comments comments={comments} />
+        <Comments postId={post.id} comments={comments} />
       </main>
 
       <Footer />
