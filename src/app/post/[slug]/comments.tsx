@@ -1,14 +1,10 @@
-import { env } from "@/env";
 import { cn } from "@/lib/utils";
-import { Comment as _Comment } from "@/types";
+import { PostWithEmbeds } from "./PostWithEmbeds";
 
-export default async function Comments({ postId }: { postId: number }) {
-  const params = new URLSearchParams({
-    post: postId.toString(),
-  });
+type Comments = PostWithEmbeds["_embedded"]["replies"][number];
+type Comment = Comments[number];
 
-  const response = await fetch(env.API_COMMENTS_URL + "?" + params.toString());
-  const comments: _Comment[] = await response.json();
+export default async function Comments({ comments }: { comments: Comments }) {
   const rootComments = comments.filter((comment) => comment.parent === 0);
 
   return (
@@ -30,8 +26,8 @@ function Comment({
   context,
   depth = 0,
 }: {
-  comment: _Comment;
-  context: _Comment[];
+  comment: Comment;
+  context: Comments;
   depth?: number;
 }) {
   const replies = context.filter((c) => c.parent === comment.id);
@@ -43,7 +39,7 @@ function Comment({
         <span className="font-bold">
           {comment.author === 0 ? "Anonymous" : comment.author_name}
         </span>
-        <span className="text-muted-foreground ml-2">
+        <span className="text-muted-foreground ml-2 text-sm">
           {new Date(comment.date).toLocaleDateString()}
         </span>
       </div>

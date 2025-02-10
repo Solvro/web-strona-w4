@@ -1,12 +1,12 @@
-import { notFound } from "next/navigation";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 import { Navbar } from "@/components/Navbar";
 import { env } from "@/env";
-import { Member, Post } from "@/types";
-import Comments from "./comments";
+import Comments from "./Comments";
 import Footer from "@/components/Footer";
 import { Path } from "@/components/Path";
+import { PostWithEmbeds } from "./PostWithEmbeds";
 
 type UserPageProps = {
   params: Promise<{ slug: string }>;
@@ -14,15 +14,13 @@ type UserPageProps = {
 
 export default async function PostPage(props: UserPageProps) {
   const params = await props.params;
-  const id = params.slug.split("-").pop();
+  const id = params.slug.split("-").pop() ?? "";
 
-  let response = await fetch(`${env.API_POSTS_URL}/${id}`);
-  const post: Post = await response.json();
+  const post = await fetchPost(id);
+  if (!post) return notFound();
 
-  response = await fetch(`${env.API_USERS_URL}/${post.author}?acf_format=standard`);
-  const author: Member = await response.json();
-
-  // TODO: create a form to add a comment
+  const author = post._embedded?.author?.[0];
+  const comments = post._embedded?.replies?.flat() || [];
 
   return (
     <>
@@ -34,10 +32,14 @@ export default async function PostPage(props: UserPageProps) {
         <div className="relative w-full">
           <h1 className="text-3xl font-bold">{post.title.rendered}</h1>
           <div>
-            <Link href={`/team/${author.slug}-${author.id}`} className="text-brand font-medium">
-              {author.name}
-            </Link>{" "}
-            &bull;{" "}
+            {author && (
+              <>
+                <Link href={`/team/${author.slug}-${author.id}`} className="text-brand font-medium">
+                  {author.name}
+                </Link>{" "}
+                &bull;{" "}
+              </>
+            )}
             <span>
               {new Date(post.date).toLocaleDateString("pl", {
                 year: "numeric",
@@ -54,10 +56,23 @@ export default async function PostPage(props: UserPageProps) {
           dangerouslySetInnerHTML={{ __html: post.content.rendered }}
         />
 
-        <Comments postId={post.id} />
+        <Comments comments={comments} />
       </main>
 
       <Footer />
     </>
   );
+}
+
+async function fetchPost(id: string): Promise<PostWithEmbeds | null> {
+  const parsedId = parseInt(id, 10);
+  if (!parsedId) return null;
+
+  const response = await fetch(`${env.API_POSTS_URL}/${parsedId}?_embed=author,replies`);
+  if (response.status === 404) return null;
+
+  const data = await response.json();
+  if (!response.ok) throw new Error(data.message);
+
+  return data;
 }
