@@ -33,6 +33,7 @@ export type Member = {
         titlePrefix: string,
         titleSuffix: string,
         profileImage: string,
+        profileHeader: string,
     },
     is_author: boolean,
 };
@@ -49,6 +50,7 @@ export type Post = {
     },
     author: string,
     comment_status: "open" | "closed",
+    fimg_url: string | false,
     tags: number[],
 };
 

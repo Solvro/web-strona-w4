@@ -53,11 +53,14 @@ export default async function UserPage(props: UserPageProps) {
             </div>
             <div className="flex-grow">
               <div className="grid lg:grid-cols-2 gap-6">
-                <div className="card lg:col-span-2">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum quibusdam, sequi
-                  qui totam, quaerat blanditiis adipisci id debitis, dolorem suscipit itaque natus
-                  vitae inventore placeat doloribus dignissimos esse ducimus! Quidem.
-                </div>
+                {member.acf.profileHeader && (
+                  <div className="card lg:col-span-2">
+                    {/* Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum quibusdam, sequi
+                    qui totam, quaerat blanditiis adipisci id debitis, dolorem suscipit itaque natus
+                    vitae inventore placeat doloribus dignissimos esse ducimus! Quidem. */}
+                    {member.acf.profileHeader}
+                  </div>
+                )}
 
                 {member.acf.academicHistory && (
                   <div className="card">
@@ -118,7 +121,7 @@ export default async function UserPage(props: UserPageProps) {
               {posts.map((post, index) => (
                 <div key={index}>
                   <img
-                    src="https://i.imgur.com/xrmQYgi.png"
+                    src={post.fimg_url ? post.fimg_url : "https://i.imgur.com/xrmQYgi.png"}
                     alt=""
                     className="border w-full object-cover h-40 mb-2 bg-secondary border-stone-200"
                   />
@@ -131,8 +134,8 @@ export default async function UserPage(props: UserPageProps) {
                   </Link>
 
                   <div className="text-sm mt-0.5">
-                    <span className="font-medium text-brand">Category</span>
-                    &nbsp;&bull;&nbsp;
+                    {/* <span className="font-medium text-brand">Category</span>
+                    &nbsp;&bull;&nbsp; */}
                     <span>{computeReadTime(post.content.rendered)} minute read</span>
                   </div>
                 </div>
