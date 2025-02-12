@@ -1,8 +1,8 @@
 import { Navbar } from "@/components/Navbar";
-import { Seminars } from "./seminars";
+import { Seminars } from "./Seminars";
 import { OurTeam } from "./OurTeam";
 import { ResearchFocus } from "./ResearchFocus";
-import { Contact } from "./contact";
+import { Contact } from "./Contact";
 import Footer from "@/components/Footer";
 import { ScrollDown } from "@/components/ScrollDown";
 

@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import researchFocusAsset from "../assets/research-focus.jpeg";
 import { BlurredCircle } from "@/components/BlurredCircle";
 import { Slide } from "@/components/Slide";

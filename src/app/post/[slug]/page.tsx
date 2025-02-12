@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 
 import { Navbar } from "@/components/Navbar";
 import { env } from "@/env";
-import Comments from "./comments";
+import Comments from "./Comments";
 import Footer from "@/components/Footer";
 import { Path } from "@/components/Path";
 import { PostWithEmbeds } from "./PostWithEmbeds";
