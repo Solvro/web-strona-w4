@@ -10,7 +10,7 @@ export function DependsOn<As extends React.ElementType = "div">({
   dependents: unknown[];
   as?: As;
 } & React.ComponentPropsWithoutRef<As>) {
-  if (!dependents.every(Boolean)) return null;
+  if (!dependents.some(Boolean)) return null;
   const Component = as || "div";
   return <Component {...props}>{children}</Component>;
 }

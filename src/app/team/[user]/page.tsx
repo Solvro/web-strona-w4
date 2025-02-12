@@ -54,12 +54,7 @@ export default async function UserPage(props: UserPageProps) {
             <div className="flex-grow">
               <div className="grid lg:grid-cols-2 gap-6">
                 {member.acf.profileHeader && (
-                  <div className="card lg:col-span-2">
-                    {/* Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum quibusdam, sequi
-                    qui totam, quaerat blanditiis adipisci id debitis, dolorem suscipit itaque natus
-                    vitae inventore placeat doloribus dignissimos esse ducimus! Quidem. */}
-                    {member.acf.profileHeader}
-                  </div>
+                  <div className="card lg:col-span-2">{member.acf.profileHeader}</div>
                 )}
 
                 {member.acf.academicHistory && (
@@ -75,14 +70,10 @@ export default async function UserPage(props: UserPageProps) {
                 )}
 
                 <DependsOn
-                  dependents={[
-                    member.acf.contact,
-                    member.acf.consultations,
-                    member.acf.consultations,
-                  ]}
+                  dependents={[member.acf.contact, member.acf.consultations]}
                   className="card space-y-5"
                 >
-                  <DependsOn dependents={[member.acf.contact, member.acf.consultations]}>
+                  <DependsOn dependents={[member.acf.contact]}>
                     <h3 className="text-lg font-medium mb-1 leading-tight">Contact</h3>
                     <ul className="space-y-2">
                       <li className="flex items-center text-sm">
