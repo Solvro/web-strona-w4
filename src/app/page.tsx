@@ -4,6 +4,7 @@ import { OurTeam } from "./OurTeam";
 import { ResearchFocus } from "./ResearchFocus";
 import { Contact } from "./contact";
 import Footer from "@/components/Footer";
+import { ScrollDown } from "@/components/ScrollDown";
 
 export default function Home() {
   return (
@@ -26,6 +27,8 @@ export default function Home() {
         </div>
 
         <OurTeam />
+
+        <ScrollDown destination="#contact" />
 
         <ResearchFocus />
       </main>
