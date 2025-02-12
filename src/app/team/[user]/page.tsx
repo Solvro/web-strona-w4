@@ -11,6 +11,7 @@ import { env } from "@/env";
 import { Member, Post } from "@/types";
 
 import "./style.css";
+import { BlurredCircle } from "@/components/BlurredCircle";
 
 type UserPageProps = {
   params: Promise<{ user: string }>;
@@ -35,7 +36,8 @@ export default async function UserPage(props: UserPageProps) {
 
         <div className="relative w-full">
           <div className="flex flex-col md:flex-row md:space-x-4 relative z-10">
-            <div className="w-[340px] mx-auto flex-shrink-0 mb-8 md:mb-0">
+            <div className="w-[340px] mx-auto flex-shrink-0 mb-8 md:mb-0 relative">
+              <BlurredCircle />
               <img
                 src={
                   member.acf.profileImage ||
@@ -43,7 +45,7 @@ export default async function UserPage(props: UserPageProps) {
                   `https://ui-avatars.com/api/?background=cf6967&color=fff&name=${member.name}`
                 }
                 alt={`${member.name}'s avatar`}
-                className="object-contain mx-auto w-[240px] h-[320px] rounded-sm shadow-sm bg-secondary"
+                className="relative z-10 object-contain mx-auto w-[240px] h-[320px] rounded-sm shadow-sm bg-secondary/30"
               />
               <div className="mt-4 text-center leading-4">
                 <p>{member.acf.titlePrefix}</p>
@@ -51,7 +53,7 @@ export default async function UserPage(props: UserPageProps) {
                 <p>{member.acf.titleSuffix}</p>
               </div>
             </div>
-            <div className="flex-grow">
+            <div className="flex-grow relative">
               <div className="grid lg:grid-cols-2 gap-6">
                 {member.acf.profileHeader && (
                   <div className="card lg:col-span-2">{member.acf.profileHeader}</div>
@@ -100,9 +102,13 @@ export default async function UserPage(props: UserPageProps) {
               </div>
             </div>
           </div>
-
-          <div className="hidden lg:block h-[min(600px,calc(100%_*_1.5))] aspect-square rounded-full pointer-events-none bg-gradient-to-br from-brand to-red-900 rouned-full absolute -right-1/3 top-1/2 transform -translate-y-1/2" />
         </div>
+
+        {/* <div>
+          <div className="ml-auto w-full relative">
+            <BlurredCircle />
+          </div>
+        </div> */}
 
         {posts.length > 0 && (
           <section className="mt-16">

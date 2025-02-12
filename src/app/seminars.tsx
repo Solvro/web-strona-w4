@@ -7,8 +7,9 @@ import {
 } from "@/components/ui/carousel";
 import { Seminar } from "@/types";
 import { env } from "@/env";
+
 import { SeminarCalendar } from "./SeminarCalendar";
-import { BlurredCircle } from "./BlurredCircle";
+import { BlurredCircle } from "@/components/BlurredCircle";
 
 export async function Seminars() {
   const response = await fetch(env.API_EVENTS_URL);
