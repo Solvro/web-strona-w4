@@ -1,10 +1,10 @@
+import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
-import { Seminars } from "./Seminars";
+import { ScrollDown } from "@/components/ScrollDown";
+import { Contact } from "./Contact";
 import { OurTeam } from "./OurTeam";
 import { ResearchFocus } from "./ResearchFocus";
-import { Contact } from "./Contact";
-import Footer from "@/components/Footer";
-import { ScrollDown } from "@/components/ScrollDown";
+import { Seminars } from "./Seminars";
 
 export default function Home() {
   return (

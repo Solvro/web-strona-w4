@@ -2,5 +2,7 @@
   "tabWidth": 2,
   "printWidth": 100,
   "semi": true,
-  "singleQuote": false
+  "singleQuote": false,
+  "plugins": ["prettier-plugin-organize-imports"],
+  "organizeImportsSkipDestructiveCodeActions": true
 }

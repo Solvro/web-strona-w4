@@ -5,11 +5,11 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Seminar } from "@/types";
 import { env } from "@/env";
+import { Seminar } from "@/types";
 
-import { SeminarCalendar } from "./SeminarCalendar";
 import { BlurredCircle } from "@/components/BlurredCircle";
+import { SeminarCalendar } from "./SeminarCalendar";
 
 export async function Seminars() {
   const response = await fetch(env.API_EVENTS_URL);

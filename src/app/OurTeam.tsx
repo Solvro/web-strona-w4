@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { Member } from "@/types";
+
 import { env } from "@/env";
+import { Member } from "@/types";
 
 export async function OurTeam() {
   const response = await fetch(env.API_USERS_URL + "?acf_format=standard");

@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
-import { ChevronDown } from "lucide-react";
 import { AnimatePresence, motion, useScroll } from "framer-motion";
+import { ChevronDown } from "lucide-react";
+import React, { useState } from "react";
 
 export function ScrollDown({ destination }: { destination: string }) {
   const [show, setShow] = useState(true);

@@ -1,6 +1,6 @@
-import { Fragment } from "react";
-import Link from "next/link";
 import { HomeIcon } from "lucide-react";
+import Link from "next/link";
+import { Fragment } from "react";
 
 import {
   Breadcrumb,
@@ -40,9 +40,7 @@ export function Path({ path, className }: { path: Path; className?: string }) {
                   <Link href={part.destination}>{part.name}</Link>
                 </BreadcrumbLink>
               ) : (
-                <BreadcrumbPage>
-                  {typeof part === "string" ? part : part.name}
-                </BreadcrumbPage>
+                <BreadcrumbPage>{typeof part === "string" ? part : part.name}</BreadcrumbPage>
               )}
             </BreadcrumbItem>
             {i < path.length - 1 && <BreadcrumbSeparator />}

@@ -1,17 +1,17 @@
-import React from "react";
+import { EnvelopeIcon, MapPinIcon, PhoneIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { EnvelopeIcon, MapPinIcon, PhoneIcon } from "@heroicons/react/24/outline";
+import React from "react";
 
-import { Navbar } from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import { BlurredCircle } from "@/components/BlurredCircle";
 import { DependsOn } from "@/components/DependsOn";
+import { Footer } from "@/components/Footer";
+import { Navbar } from "@/components/Navbar";
 import { Path } from "@/components/Path";
 import { env } from "@/env";
 import { Member, Post } from "@/types";
 
 import "./style.css";
-import { BlurredCircle } from "@/components/BlurredCircle";
 
 type UserPageProps = {
   params: Promise<{ user: string }>;

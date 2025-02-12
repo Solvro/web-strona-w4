@@ -1,7 +1,7 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { EnvelopeIcon, MapPinIcon, PhoneIcon } from "@heroicons/react/24/outline";
+import dynamic from "next/dynamic";
 
 const Map = dynamic(() => import("./Map"), { ssr: false });
 

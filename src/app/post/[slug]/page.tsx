@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
-import { env } from "@/env";
-import Comments from "./Comments";
-import Footer from "@/components/Footer";
 import { Path } from "@/components/Path";
+import { env } from "@/env";
+import { Comments } from "./Comments";
 import { PostWithEmbeds } from "./PostWithEmbeds";
 
 type UserPageProps = {

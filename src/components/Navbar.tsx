@@ -1,8 +1,8 @@
 "use client";
 
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
 import Link from "next/link";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/20/solid";
 
 import {
   NavigationMenu,
@@ -20,11 +20,11 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Button } from "./ui/button";
 import { ThemeSwitch } from "./ThemeSwitch";
+import { Button } from "./ui/button";
 
-import WitLogo from "@/assets/wit-logo.svg";
 import SolvroLogo from "@/assets/solvro.png";
+import WitLogo from "@/assets/wit-logo.svg";
 
 export function Navbar() {
   return (

@@ -1,17 +1,11 @@
 import { cn } from "@/lib/utils";
-import { PostWithEmbeds } from "./PostWithEmbeds";
 import { CommentForm } from "./CommentForm";
+import { PostWithEmbeds } from "./PostWithEmbeds";
 
 type Comments = PostWithEmbeds["_embedded"]["replies"][number];
 type Comment = Comments[number];
 
-export default async function Comments({
-  postId,
-  comments,
-}: {
-  postId: number;
-  comments: Comments;
-}) {
+export function Comments({ postId, comments }: { postId: number; comments: Comments }) {
   const rootComments = comments.filter((comment) => comment.parent === 0);
 
   return (
