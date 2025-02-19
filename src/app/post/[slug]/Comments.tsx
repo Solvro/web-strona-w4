@@ -1,13 +1,22 @@
+import Image from "next/image";
+
 import { cn } from "@/lib/utils";
-import { CommentForm } from "./CommentForm";
-import { PostWithEmbeds } from "./PostWithEmbeds";
+
+import { CommentForm } from "./comment-form";
+import type { PostWithEmbeds } from "./post-with-embeds";
 
 type Comments = PostWithEmbeds["_embedded"]["replies"][number];
 type Comment = Comments[number];
 
-export function Comments({ postId, comments }: { postId: number; comments: Comments }) {
+//eslint-disable-next-line @typescript-eslint/no-redeclare
+export function Comments({
+  postId,
+  comments,
+}: {
+  postId: number;
+  comments: Comments;
+}) {
   const rootComments = comments.filter((comment) => comment.parent === 0);
-
   return (
     <div className="mt-14">
       <h2 className="section-header mb-5">Discussion</h2>
@@ -24,6 +33,7 @@ export function Comments({ postId, comments }: { postId: number; comments: Comme
   );
 }
 
+//eslint-disable-next-line @typescript-eslint/no-redeclare
 function Comment({
   comment,
   context,
@@ -36,13 +46,24 @@ function Comment({
   const replies = context.filter((c) => c.parent === comment.id);
 
   return (
-    <div className={cn("ml-2 md:ml-4 mb-4", depth > 0 && "pl-4 border-l border-secondary")}>
-      <div className="flex items-center mb-2">
-        <img src={comment.author_avatar_urls["48"]} className="w-8 h-8 rounded-full mr-2" />
+    <div
+      className={cn(
+        "mb-4 ml-2 md:ml-4",
+        depth > 0 && "border-l border-secondary pl-4",
+      )}
+    >
+      <div className="mb-2 flex items-center">
+        <Image
+          src={comment.author_avatar_urls["48"]}
+          className="mr-2 h-8 w-8 rounded-full"
+          alt=""
+          width={100}
+          height={100}
+        />
         <span className="font-bold">
           {comment.author === 0 ? "Anonymous" : comment.author_name}
         </span>
-        <span className="text-muted-foreground ml-2 text-sm">
+        <span className="ml-2 text-sm text-muted-foreground">
           {new Date(comment.date).toLocaleDateString()}
         </span>
       </div>
@@ -51,7 +72,12 @@ function Comment({
 
       <div className="mt-2">
         {replies.map((reply) => (
-          <Comment key={reply.id} comment={reply} context={context} depth={depth + 1} />
+          <Comment
+            key={reply.id}
+            comment={reply}
+            context={context}
+            depth={depth + 1}
+          />
         ))}
       </div>
     </div>
