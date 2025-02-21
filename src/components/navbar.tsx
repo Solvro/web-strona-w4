@@ -20,29 +20,39 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { ThemeSwitch } from "./ThemeSwitch";
-import { Button } from "./ui/button";
 
-import SolvroLogo from "@/assets/solvro.png";
-import WitLogo from "@/assets/wit-logo.svg";
+import { ThemeSwitch } from "./theme-switch";
+import { Button } from "./ui/button";
 
 export function Navbar() {
   return (
     <div className="relative z-20">
-      <nav className="max-w-screen-xl mx-auto py-4 w-full flex flex-row justify-between items-center px-4 select-none">
+      <nav className="mx-auto flex w-full max-w-screen-xl select-none flex-row items-center justify-between px-4 py-4">
         <div className="flex items-center gap-1">
           <Link href="/">
             <Image
-              src={WitLogo}
+              src="/wit-logo.svg"
+              width={200}
+              height={200}
               alt="Emblem of Faculty of Information and Communication Technology"
-              className="w-14 h-auto"
+              className="h-auto w-14"
             />
           </Link>
 
           <XMarkIcon className="size-6" />
 
-          <a href="https://solvro.pwr.edu.pl" target="_blank" rel="noopener noreferrer">
-            <Image src={SolvroLogo} alt="Solvro logo" className="h-14 w-auto" />
+          <a
+            href="https://solvro.pwr.edu.pl"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              src="/solvro.png"
+              width={200}
+              height={200}
+              alt="Solvro logo"
+              className="h-14 w-auto"
+            />
           </a>
         </div>
         <NavigationMenu className="hidden sm:flex">
@@ -83,27 +93,27 @@ export function Navbar() {
             <SheetHeader>
               <SheetTitle>
                 <Image
-                  src={WitLogo}
+                  src="/wit-logo.svg"
                   alt="Emblem of Wroclaw University of Science and Technology WIT"
-                  className="w-12 h-auto"
+                  className="h-auto w-12"
                 />
               </SheetTitle>
               <SheetDescription className="pt-6 dark:text-white">
                 <Link
                   href="/education"
-                  className="font-medium py-1 px-2 hover:opacity-90 rounded-md block text-left"
+                  className="block rounded-md px-2 py-1 text-left font-medium hover:opacity-90"
                 >
                   Education
                 </Link>
                 <Link
                   href="/department"
-                  className="font-medium py-1 px-2 hover:opacity-90 rounded-md block text-left"
+                  className="block rounded-md px-2 py-1 text-left font-medium hover:opacity-90"
                 >
                   Department
                 </Link>
                 <Link
                   href="/#contact"
-                  className="font-medium py-1 px-2 hover:opacity-90 rounded-md block text-left"
+                  className="block rounded-md px-2 py-1 text-left font-medium hover:opacity-90"
                 >
                   Contact
                 </Link>

@@ -1,7 +1,8 @@
 "use client";
 
 import { Frown, Smile } from "lucide-react";
-import { FormEvent, useState } from "react";
+import type { FormEvent } from "react";
+import { useState } from "react";
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { env } from "@/env";
@@ -10,21 +11,23 @@ export function CommentForm({ postId }: { postId: number }) {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  async function handleComment(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+  async function handleComment(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
 
-    const form = e.currentTarget;
+    const form = event.currentTarget;
     const formData = new FormData(form);
 
-    const res = await fetch(`${env.NEXT_PUBLIC_API}/comments`, {
+    const response = await fetch(`${env.NEXT_PUBLIC_API}/comments`, {
       method: "POST",
       body: formData,
     });
-    if (res.ok) {
+    if (response.ok) {
       setSubmitted(true);
       return;
     }
-    const data = await res.json();
+    //eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const data = await response.json();
+    //eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-argument, @typescript-eslint/strict-boolean-expressions
     setError(data.message || "An error occurred. Please try again later.");
   }
 
@@ -34,16 +37,16 @@ export function CommentForm({ postId }: { postId: number }) {
         <Smile className="h-4 w-4" />
         <AlertTitle>Comment sent!</AlertTitle>
         <AlertDescription>
-          Thank you for your comment. It will be verified by the administrators before being
-          published.
+          Thank you for your comment. It will be verified by the administrators
+          before being published.
         </AlertDescription>
       </Alert>
     );
   }
   return (
-    <form onSubmit={handleComment} className="max-w-xl space-y-3 mt-12">
+    <form onSubmit={handleComment} className="mt-12 max-w-xl space-y-3">
       <div>
-        <label className="font-medium mb-1" htmlFor="author_name">
+        <label className="mb-1 font-medium" htmlFor="author_name">
           Name
         </label>
         <input
@@ -51,11 +54,11 @@ export function CommentForm({ postId }: { postId: number }) {
           type="text"
           name="author_name"
           placeholder="John Doe"
-          className="rounded-md w-full border shadow-sm py-1.5 px-3"
+          className="w-full rounded-md border px-3 py-1.5 shadow-sm"
         />
       </div>
       <div>
-        <label className="font-medium mb-1" htmlFor="author_email">
+        <label className="mb-1 font-medium" htmlFor="author_email">
           Email
         </label>
         <input
@@ -63,27 +66,28 @@ export function CommentForm({ postId }: { postId: number }) {
           type="email"
           name="author_email"
           placeholder="john.doe@mit.edu"
-          className="rounded-md w-full border shadow-sm py-1.5 px-3"
+          className="w-full rounded-md border px-3 py-1.5 shadow-sm"
         />
       </div>
       <div>
-        <label className="font-medium mb-1" htmlFor="content">
+        <label className="mb-1 font-medium" htmlFor="content">
           Your message
         </label>
         <textarea
           required
           name="content"
           placeholder=""
-          className="rounded-md w-full border shadow-sm py-1.5 px-3"
+          className="w-full rounded-md border px-3 py-1.5 shadow-sm"
         ></textarea>
-        <small className="text-muted-foreground text-sm -mt-1 block">
-          Your comment will be verified by the administrators before being published.
+        <small className="-mt-1 block text-sm text-muted-foreground">
+          Your comment will be verified by the administrators before being
+          published.
         </small>
       </div>
 
       <input type="number" value={postId} hidden name="post" readOnly />
 
-      {error && (
+      {error ?? (
         <Alert className="max-w-xl" variant="destructive">
           <Frown className="h-4 w-4" />
           <AlertTitle>Error</AlertTitle>
@@ -93,7 +97,7 @@ export function CommentForm({ postId }: { postId: number }) {
 
       <button
         type="submit"
-        className="py-3 bg-brand hover:opacity-90 transition-all !mt-6 block text-white rounded-md w-full"
+        className="!mt-6 block w-full rounded-md bg-brand py-3 text-white transition-all hover:opacity-90"
       >
         Comment
       </button>

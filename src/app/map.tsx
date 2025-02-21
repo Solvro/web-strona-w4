@@ -1,9 +1,8 @@
 "use client";
 
 import L from "leaflet";
-import { MapContainer, Marker, TileLayer } from "react-leaflet";
-
 import "leaflet/dist/leaflet.css";
+import { MapContainer, Marker, TileLayer } from "react-leaflet";
 
 const markerIcon = L.icon({
   iconUrl: "/marker.png",
@@ -13,20 +12,20 @@ const markerIcon = L.icon({
 
 L.Marker.prototype.options.icon = markerIcon;
 
-export default function Map() {
+export function Map() {
   return (
     <MapContainer
-      center={[51.108946, 17.059969]}
+      center={[51.108_946, 17.059_969]}
       zoom={16}
       scrollWheelZoom={false}
-      className="w-full h-full"
+      className="h-full w-full"
       zoomControl={false}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={[51.108946, 17.059969]} />
+      <Marker position={[51.108_946, 17.059_969]} />
     </MapContainer>
   );
 }

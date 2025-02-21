@@ -5,7 +5,7 @@ export interface Event {
   location: string;
 }
 
-export type Seminar = {
+export interface Seminar {
   title: string;
   description: string;
   start_date: Date;
@@ -15,9 +15,9 @@ export type Seminar = {
     country: string;
     province: string;
   };
-};
+}
 
-export type Member = {
+export interface Member {
   id: number;
   name: string;
   slug: string;
@@ -36,9 +36,9 @@ export type Member = {
     profileHeader: string;
   };
   is_author: boolean;
-};
+}
 
-export type Post = {
+export interface Post {
   id: number;
   date: string;
   slug: string;
@@ -50,11 +50,11 @@ export type Post = {
   };
   author: string;
   comment_status: "open" | "closed";
-  fimg_url: string | false;
+  fimg_url: string | undefined;
   tags: number[];
-};
+}
 
-export type Comment = {
+export interface Comment {
   id: number;
   post: number;
   parent: number; // 0 if it's a top-level comment
@@ -69,4 +69,4 @@ export type Comment = {
     "48": string;
     "96": string;
   };
-};
+}

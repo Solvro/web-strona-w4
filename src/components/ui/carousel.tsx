@@ -1,26 +1,24 @@
 "use client";
 
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/16/solid";
+import useEmblaCarousel from "embla-carousel-react";
+import type { UseEmblaCarouselType } from "embla-carousel-react";
 import * as React from "react";
-import useEmblaCarousel, {
-  type UseEmblaCarouselType,
-} from "embla-carousel-react";
 
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { ChevronLeftIcon } from "@heroicons/react/16/solid";
-import { ChevronRightIcon } from "@heroicons/react/16/solid";
+import { cn } from "@/lib/utils";
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
 type CarouselOptions = UseCarouselParameters[0];
 type CarouselPlugin = UseCarouselParameters[1];
 
-type CarouselProps = {
+interface CarouselProps {
   opts?: CarouselOptions;
   plugins?: CarouselPlugin;
   orientation?: "horizontal" | "vertical";
   setApi?: (api: CarouselApi) => void;
-};
+}
 
 type CarouselContextProps = {
   carouselRef: ReturnType<typeof useEmblaCarousel>[0];
@@ -35,8 +33,7 @@ const CarouselContext = React.createContext<CarouselContextProps | null>(null);
 
 function useCarousel() {
   const context = React.useContext(CarouselContext);
-
-  if (!context) {
+  if (context === null) {
     throw new Error("useCarousel must be used within a <Carousel />");
   }
 
@@ -57,28 +54,28 @@ const Carousel = React.forwardRef<
       children,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [carouselRef, api] = useEmblaCarousel(
       {
         ...opts,
         axis: orientation === "horizontal" ? "x" : "y",
       },
-      plugins
+      plugins,
     );
-    const [canScrollPrev, setCanScrollPrev] = React.useState(false);
+    const [canScrollPrevious, setCanScrollPrevious] = React.useState(false);
     const [canScrollNext, setCanScrollNext] = React.useState(false);
 
     const onSelect = React.useCallback((api: CarouselApi) => {
-      if (!api) {
+      if (api === undefined) {
         return;
       }
 
-      setCanScrollPrev(api.canScrollPrev());
+      setCanScrollPrevious(api.canScrollPrev());
       setCanScrollNext(api.canScrollNext());
     }, []);
 
-    const scrollPrev = React.useCallback(() => {
+    const scrollPrevious = React.useCallback(() => {
       api?.scrollPrev();
     }, [api]);
 
@@ -90,17 +87,17 @@ const Carousel = React.forwardRef<
       (event: React.KeyboardEvent<HTMLDivElement>) => {
         if (event.key === "ArrowLeft") {
           event.preventDefault();
-          scrollPrev();
+          scrollPrevious();
         } else if (event.key === "ArrowRight") {
           event.preventDefault();
           scrollNext();
         }
       },
-      [scrollPrev, scrollNext]
+      [scrollPrevious, scrollNext],
     );
 
     React.useEffect(() => {
-      if (!api || !setApi) {
+      if (api === undefined || setApi === undefined) {
         return;
       }
 
@@ -108,7 +105,7 @@ const Carousel = React.forwardRef<
     }, [api, setApi]);
 
     React.useEffect(() => {
-      if (!api) {
+      if (api === undefined) {
         return;
       }
 
@@ -117,7 +114,7 @@ const Carousel = React.forwardRef<
       api.on("select", onSelect);
 
       return () => {
-        api?.off("select", onSelect);
+        api.off("select", onSelect);
       };
     }, [api, onSelect]);
 
@@ -125,13 +122,14 @@ const Carousel = React.forwardRef<
       <CarouselContext.Provider
         value={{
           carouselRef,
-          api: api,
+          api,
           opts,
           orientation:
+            //eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
             orientation || (opts?.axis === "y" ? "vertical" : "horizontal"),
-          scrollPrev,
+          scrollPrev: scrollPrevious,
           scrollNext,
-          canScrollPrev,
+          canScrollPrev: canScrollPrevious,
           canScrollNext,
         }}
       >
@@ -147,7 +145,7 @@ const Carousel = React.forwardRef<
         </div>
       </CarouselContext.Provider>
     );
-  }
+  },
 );
 Carousel.displayName = "Carousel";
 
@@ -193,8 +191,8 @@ const CarouselPrevious = React.forwardRef<
       variant={variant}
       size={size}
       className={cn(
-        "h-8 w-8 rounded-full flex-shrink-0 bg-white border-white hover:opacity-90 hover:bg-white",
-        className
+        "h-8 w-8 flex-shrink-0 rounded-full border-white bg-white hover:bg-white hover:opacity-90",
+        className,
       )}
       disabled={!canScrollPrev}
       onClick={scrollPrev}
@@ -219,8 +217,8 @@ const CarouselNext = React.forwardRef<
       variant={variant}
       size={size}
       className={cn(
-        "h-8 w-8 rounded-full flex-shrink-0 bg-white border-white hover:opacity-90 hover:bg-white",
-        className
+        "h-8 w-8 flex-shrink-0 rounded-full border-white bg-white hover:bg-white hover:opacity-90",
+        className,
       )}
       disabled={!canScrollNext}
       onClick={scrollNext}

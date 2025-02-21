@@ -1,6 +1,7 @@
 "use client";
 
-import { HTMLMotionProps, motion, useInView } from "framer-motion";
+import type { HTMLMotionProps } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 export function Slide({
@@ -12,7 +13,9 @@ export function Slide({
   const [shown, setShown] = useState(false);
 
   useEffect(() => {
-    if (inView) setShown(true);
+    if (inView) {
+      setShown(true);
+    }
   }, [inView]);
 
   return (

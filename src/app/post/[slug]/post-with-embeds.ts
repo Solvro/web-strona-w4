@@ -1,4 +1,4 @@
-export type PostWithEmbeds = {
+export interface PostWithEmbeds {
   id: number;
   date: string;
   date_gmt: string;
@@ -117,4 +117,4 @@ export type PostWithEmbeds = {
       };
     }[][];
   };
-};
+}

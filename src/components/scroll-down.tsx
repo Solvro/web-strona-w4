@@ -7,20 +7,22 @@ import React, { useState } from "react";
 export function ScrollDown({ destination }: { destination: string }) {
   const [show, setShow] = useState(true);
   const { scrollY } = useScroll();
-  scrollY.on("change", (scroll) => setShow(scroll < 140));
+  scrollY.on("change", (scroll) => {
+    setShow(scroll < 140);
+  });
 
   return (
     <AnimatePresence>
-      {show && (
+      {show ? (
         <motion.a
           href={destination}
           exit={{ opacity: 0 }}
-          className="mx-auto grid place-items-center w-max fixed top-[calc(100%-12px)] left-1/2 transform -translate-y-full -translate-x-1/2 z-20"
+          className="fixed left-1/2 top-[calc(100%-12px)] z-20 mx-auto grid w-max -translate-x-1/2 -translate-y-full transform place-items-center"
         >
           <ChevronDown className="size-10 animate-bounce stroke-[1.5px]" />
-          <span className="text-sm opacity-80 -mt-2">Scroll down</span>
+          <span className="-mt-2 text-sm opacity-80">Scroll down</span>
         </motion.a>
-      )}
+      ) : null}
     </AnimatePresence>
   );
 }

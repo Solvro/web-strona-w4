@@ -19,7 +19,13 @@ type Path = (
   | string
 )[];
 
-export function Path({ path, className }: { path: Path; className?: string }) {
+export function CurrentActivePath({
+  path,
+  className,
+}: {
+  path: Path;
+  className?: string;
+}) {
   return (
     <Breadcrumb className={className}>
       <BreadcrumbList>
@@ -32,18 +38,20 @@ export function Path({ path, className }: { path: Path; className?: string }) {
         </BreadcrumbItem>
         <BreadcrumbSeparator />
 
-        {path.map((part, i) => (
-          <Fragment key={i}>
+        {path.map((part, index) => (
+          <Fragment key={typeof part === "string" ? part : part.name}>
             <BreadcrumbItem>
-              {typeof part !== "string" && part.destination ? (
+              {typeof part !== "string" && part.destination !== undefined ? (
                 <BreadcrumbLink asChild>
                   <Link href={part.destination}>{part.name}</Link>
                 </BreadcrumbLink>
               ) : (
-                <BreadcrumbPage>{typeof part === "string" ? part : part.name}</BreadcrumbPage>
+                <BreadcrumbPage>
+                  {typeof part === "string" ? part : part.name}
+                </BreadcrumbPage>
               )}
             </BreadcrumbItem>
-            {i < path.length - 1 && <BreadcrumbSeparator />}
+            {index < path.length - 1 && <BreadcrumbSeparator />}
           </Fragment>
         ))}
       </BreadcrumbList>
