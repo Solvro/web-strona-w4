@@ -97,7 +97,7 @@ body {
 
 .section-header {
   --dash: #787878;
-  @apply text-brand font-medium text-2xl;
+  @apply text-2xl font-medium text-brand;
 }
 
 .dark .section-header {
@@ -108,7 +108,7 @@ body {
   content: "";
   vertical-align: middle;
   background-color: var(--dash);
-  @apply inline-block mr-1 w-6 h-[1px];
+  @apply mr-1 inline-block h-[1px] w-6;
 }
 
 .rdp-caption_end:not(.rdp-caption_start) {

@@ -1,3 +1,4 @@
+import { BlurredCircle } from "@/components/blurred-circle";
 import {
   Carousel,
   CarouselContent,
@@ -6,49 +7,48 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { env } from "@/env";
-import { Seminar } from "@/types";
+import { truncate } from "@/lib/truncate";
+import type { Seminar } from "@/types";
 
-import { BlurredCircle } from "@/components/BlurredCircle";
-import { SeminarCalendar } from "./SeminarCalendar";
+import { SeminarCalendar } from "./seminar-calendar";
 
 export async function Seminars() {
   const response = await fetch(env.API_EVENTS_URL);
-  const seminars: Seminar[] = (await response.json())["events"].map((seminar: Seminar) => {
-    seminar.start_date = new Date(seminar.start_date);
-    return seminar;
-  });
+  //eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access, unicorn/no-await-expression-member
+  const seminars: Seminar[] = (await response.json())?.events.map(
+    (seminar: Seminar) => {
+      seminar.start_date = new Date(seminar.start_date);
+      return seminar;
+    },
+  );
 
-  const truncate = (text: string, maxLength: number) => {
-    const l = text.length;
-    let result = text.replace(/<[^>]*>/g, "").substring(0, maxLength);
-    if (l > maxLength) result += "...";
-
-    return result;
-  };
-
-  if (seminars.length <= 0) return null;
+  if (seminars.length <= 0) {
+    return null;
+  }
   return (
-    <div className="mt-6 w-full mx-auto flex flex-col lg:flex-row items-center justify-center space-y-4 lg:space-y-0 lg:space-x-4">
+    <div className="mx-auto mt-6 flex w-full flex-col items-center justify-center space-y-4 lg:flex-row lg:space-x-4 lg:space-y-0">
       <div className="relative max-w-full">
-        <Carousel className="bg-brand text-white px-4 py-6 w-full rounded-2xl relative z-10">
+        <Carousel className="relative z-10 w-full rounded-2xl bg-brand px-4 py-6 text-white">
           <CarouselPrevious />
 
           <CarouselContent>
             {seminars.map((seminar, index) => (
               <CarouselItem key={index}>
                 <div className="p-1">
-                  <h4 className="font-medium text-xl text-center mb-1.5">{seminar.title}</h4>
+                  <h4 className="mb-1.5 text-center text-xl font-medium">
+                    {seminar.title}
+                  </h4>
 
-                  {seminar.description && (
+                  {seminar.description ? (
                     <p
-                      className="opacity-80 text-sm leading-tight"
+                      className="text-sm leading-tight opacity-80"
                       dangerouslySetInnerHTML={{
                         __html: truncate(seminar.description, 300),
                       }}
                     ></p>
-                  )}
+                  ) : null}
 
-                  <div className="mt-4 text-base font-semibold leading-snug pb-6">
+                  <div className="mt-4 pb-6 text-base font-semibold leading-snug">
                     <p>
                       {seminar.start_date.toLocaleString("pl-PL", {
                         year: "numeric",
