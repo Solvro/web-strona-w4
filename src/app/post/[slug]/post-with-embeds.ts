@@ -69,7 +69,7 @@ export interface PostWithEmbeds {
         }[];
       };
     }[];
-    replies: {
+    replies?: {
       id: number;
       parent: number;
       author: number;

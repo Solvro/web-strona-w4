@@ -87,7 +87,7 @@ export function CommentForm({ postId }: { postId: number }) {
 
       <input type="number" value={postId} hidden name="post" readOnly />
 
-      {error ?? (
+      {error && (
         <Alert className="max-w-xl" variant="destructive">
           <Frown className="h-4 w-4" />
           <AlertTitle>Error</AlertTitle>

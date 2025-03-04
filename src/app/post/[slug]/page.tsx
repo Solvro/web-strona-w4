@@ -23,7 +23,7 @@ export default async function PostPage(props: UserPageProps) {
   }
 
   const author = post._embedded.author[0];
-  const comments = post._embedded.replies.flat();
+  const comments = post._embedded.replies?.flat() ?? [];
 
   return (
     <>
@@ -44,7 +44,7 @@ export default async function PostPage(props: UserPageProps) {
             >
               {author.name}
             </Link>
-            &bull;
+            <span className="mx-1">&bull;</span>
             <span>
               {new Date(post.date).toLocaleDateString("pl", {
                 year: "numeric",
