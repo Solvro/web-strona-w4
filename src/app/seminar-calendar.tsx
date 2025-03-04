@@ -10,7 +10,7 @@ export function SeminarCalendar({ seminars }: { seminars: Seminar[] }) {
 
   return (
     <EventCalendar
-      className="relative z-10 flex justify-center rounded-2xl border p-4 shadow-lg"
+      className="relative z-10 flex justify-center rounded-2xl border p-4 shadow-lg bg-white dark:bg-black"
       mode="multiple"
       numberOfMonths={width > 640 ? 2 : 1}
       selected={seminars.map((seminar) => seminar.start_date)}

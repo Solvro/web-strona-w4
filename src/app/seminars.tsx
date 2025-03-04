@@ -35,8 +35,8 @@ export async function Seminars() {
             {seminars.map((seminar, index) => (
               <CarouselItem key={index}>
                 <div className="p-1">
-                  <h4 className="mb-1.5 text-center text-xl font-medium">
-                    {seminar.title}
+                  <h4 className="mb-1.5 text-center text-xl font-medium" dangerouslySetInnerHTML={{__html: seminar.title}}>
+                    {/* {seminar.title} */}
                   </h4>
 
                   {seminar.description ? (

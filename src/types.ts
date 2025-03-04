@@ -50,7 +50,7 @@ export interface Post {
   };
   author: string;
   comment_status: "open" | "closed";
-  fimg_url: string | undefined;
+  fimg_url: string | false;
   tags: number[];
 }
 

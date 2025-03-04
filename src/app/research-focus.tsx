@@ -34,7 +34,7 @@ const elements = [
 
 export function ResearchFocus() {
   return (
-    <div className="mt-24">
+    <div className="mt-24" id="education">
       <h2 className="section-header">Our Research Focus</h2>
       <div className="grid-cols-3 gap-8 md:grid lg:grid-cols-2">
         <div className="col-span-2 mt-8 sm:px-12 lg:col-span-1">

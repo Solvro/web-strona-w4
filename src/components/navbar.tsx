@@ -6,6 +6,7 @@ import Link from "next/link";
 
 import {
   NavigationMenu,
+  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
@@ -58,7 +59,7 @@ export function Navbar() {
         <NavigationMenu className="hidden sm:flex">
           <NavigationMenuList>
             <NavigationMenuItem>
-              <Link href="/education" legacyBehavior passHref>
+              <Link href="/#education" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   Education
                 </NavigationMenuLink>
@@ -68,7 +69,7 @@ export function Navbar() {
               <NavigationMenuTrigger>Department</NavigationMenuTrigger>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="#contact" legacyBehavior passHref>
+              <Link href="/#contact" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   Contact
                 </NavigationMenuLink>
@@ -94,13 +95,15 @@ export function Navbar() {
               <SheetTitle>
                 <Image
                   src="/wit-logo.svg"
+                  width={200}
+                  height={200}
                   alt="Emblem of Wroclaw University of Science and Technology WIT"
                   className="h-auto w-12"
                 />
               </SheetTitle>
               <SheetDescription className="pt-6 dark:text-white">
                 <Link
-                  href="/education"
+                  href="/#education"
                   className="block rounded-md px-2 py-1 text-left font-medium hover:opacity-90"
                 >
                   Education

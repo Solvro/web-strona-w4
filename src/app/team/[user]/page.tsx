@@ -144,7 +144,7 @@ export default async function UserPage(props: UserPageProps) {
               {posts.map((post, index) => (
                 <div key={index}>
                   <Image
-                    src={post.fimg_url ?? "https://i.imgur.com/xrmQYgi.png"}
+                    src={(post.fimg_url || null) ?? "https://i.imgur.com/xrmQYgi.png"}
                     width={200}
                     height={200}
                     alt=""
