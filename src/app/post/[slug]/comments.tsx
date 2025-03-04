@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { CommentForm } from "./comment-form";
 import type { PostWithEmbeds } from "./post-with-embeds";
 
-type Comments = PostWithEmbeds["_embedded"]["replies"][number];
+type Comments = NonNullable<PostWithEmbeds["_embedded"]["replies"]>[number];
 type Comment = Comments[number];
 
 //eslint-disable-next-line @typescript-eslint/no-redeclare
