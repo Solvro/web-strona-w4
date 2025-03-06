@@ -11,6 +11,7 @@ import { truncate } from "@/lib/truncate";
 import type { Seminar } from "@/types";
 
 import { SeminarCalendar } from "./seminar-calendar";
+import { SeminarShortcut } from "./seminar-shortcut";
 
 export async function Seminars() {
   const response = await fetch(env.API_EVENTS_URL);
@@ -35,7 +36,10 @@ export async function Seminars() {
             {seminars.map((seminar, index) => (
               <CarouselItem key={index}>
                 <div className="p-1">
-                  <h4 className="mb-1.5 text-center text-xl font-medium" dangerouslySetInnerHTML={{__html: seminar.title}}>
+                  <h4
+                    className="mb-1.5 text-center text-xl font-medium"
+                    dangerouslySetInnerHTML={{ __html: seminar.title }}
+                  >
                     {/* {seminar.title} */}
                   </h4>
 
@@ -61,6 +65,8 @@ export async function Seminars() {
                     <p>{seminar.venue.venue}</p>
                   </div>
                 </div>
+
+                {/* <SeminarShortcut seminar={seminar} key={index} /> */}
               </CarouselItem>
             ))}
           </CarouselContent>
