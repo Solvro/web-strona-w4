@@ -11,7 +11,7 @@ export async function OurTeam() {
     .sort((a, b) => a.name.localeCompare(b.name));
 
   return (
-    <div className="mt-14">
+    <div className="mt-14" id="our-team">
       <h2 className="section-header mb-10">Our Team</h2>
       <ul className="mb-6 mt-3 flex flex-row flex-wrap justify-center gap-3 sm:px-12 lg:px-0">
         {members.map((member, index) => (
