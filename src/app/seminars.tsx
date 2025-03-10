@@ -13,7 +13,9 @@ import type { Seminar } from "@/types";
 import { SeminarCalendar } from "./seminar-calendar";
 
 export async function Seminars() {
-  const response = await fetch(env.API_EVENTS_URL);
+  const response = await fetch(
+    env.API_EVENTS_URL + "?start_date=" + (new Date().getFullYear() - 1),
+  );
   //eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access, unicorn/no-await-expression-member
   const seminars: Seminar[] = (await response.json())?.events.map(
     (seminar: Seminar) => {
