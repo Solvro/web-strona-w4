@@ -36,7 +36,10 @@ export default async function PostPage(props: UserPageProps) {
         />
 
         <div className="relative w-full">
-          <h1 className="text-3xl font-bold">{post.title.rendered}</h1>
+          <h1
+            className="text-3xl font-bold"
+            dangerouslySetInnerHTML={{ __html: post.title.rendered }}
+          ></h1>
           <div>
             <Link
               href={`/team/${author.slug}-${author.id.toString()}`}
@@ -57,7 +60,7 @@ export default async function PostPage(props: UserPageProps) {
         </div>
 
         <section
-          className="prose mt-16 max-w-screen-md"
+          className="prose mt-16 max-w-screen-md [&_img]:dark:invert"
           dangerouslySetInnerHTML={{ __html: post.content.rendered }}
         />
 

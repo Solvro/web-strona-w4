@@ -158,8 +158,10 @@ export default async function UserPage(props: UserPageProps) {
                     href={`/post/${post.slug}-${post.id.toString()}`}
                     className="text-lg font-medium leading-tight"
                   >
-                    {post.title.rendered} &bull;{" "}
-                    {new Date(post.date).toLocaleDateString()}
+                    <span
+                      dangerouslySetInnerHTML={{ __html: post.title.rendered }}
+                    ></span>{" "}
+                    &bull; {new Date(post.date).toLocaleDateString()}
                   </Link>
                   <div className="mt-0.5 text-sm">
                     {/* <span className="font-medium text-brand">Category</span>
