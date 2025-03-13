@@ -60,7 +60,7 @@ export default async function PostPage(props: UserPageProps) {
         </div>
 
         <section
-          className="prose mt-16 max-w-screen-md [&_img]:dark:invert"
+          className="prose mt-16 max-w-screen-md [&_.ql-img-displayed-equation]:dark:invert [&_.ql-img-inline-formula]:dark:invert"
           dangerouslySetInnerHTML={{ __html: post.content.rendered }}
         />
 
