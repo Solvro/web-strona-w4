@@ -16,7 +16,7 @@ export default function Home() {
         <div className="w-full">
           <div>
             <h1 className="text-4xl font-semibold text-brand">
-              Cyberphysical Systems Laboratory
+              Cyber-physical Systems Group
             </h1>
 
             <p className="mt-3">

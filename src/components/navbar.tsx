@@ -1,6 +1,9 @@
 "use client";
 
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/20/solid";
+import {
+  Bars3Icon,
+  // XMarkIcon
+} from "@heroicons/react/20/solid";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -32,17 +35,27 @@ export function Navbar() {
         <div className="flex items-center gap-1">
           <Link href="/">
             <Image
+              src="/CPSG_cropped.svg"
+              width={200}
+              height={200}
+              alt="Emblem of Faculty of Information and Communication Technology"
+              className="h-100 h-auto dark:invert"
+            />
+          </Link>
+
+          {/* <XMarkIcon className="size-6" />
+
+          <Link href="/">
+            <Image
               src="/wit-logo.svg"
               width={200}
               height={200}
               alt="Emblem of Faculty of Information and Communication Technology"
               className="h-auto w-14"
             />
-          </Link>
+          </Link> */}
 
-          <XMarkIcon className="size-6" />
-
-          <a
+          {/* <a
             href="https://solvro.pwr.edu.pl"
             target="_blank"
             rel="noopener noreferrer"
@@ -54,7 +67,7 @@ export function Navbar() {
               alt="Solvro logo"
               className="h-14 w-auto"
             />
-          </a>
+          </a> */}
         </div>
         <NavigationMenu className="hidden sm:flex">
           <NavigationMenuList>

@@ -14,23 +14,39 @@ import { SeminarCalendar } from "./seminar-calendar";
 
 export async function Seminars() {
   const response = await fetch(
-    env.API_EVENTS_URL + "?start_date=" + (new Date().getFullYear() - 1),
-  );
-  //eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access, unicorn/no-await-expression-member
-  const seminars: Seminar[] = (await response.json())?.events.map(
-    (seminar: Seminar) => {
-      seminar.start_date = new Date(seminar.start_date);
-      return seminar;
-    },
+    `${env.API_EVENTS_URL}?start_date=${(new Date().getFullYear() - 1).toString()}`,
   );
 
-  if (seminars.length <= 0) {
+  const json = (await response.json()) as { events: Seminar[] };
+  const seminars: Seminar[] = json.events.map((seminar: Seminar) => ({
+    ...seminar,
+    start_date: new Date(seminar.start_date),
+  }));
+
+  if (seminars.length === 0) {
     return null;
   }
+
+  // Sort seminars by date (ascending)
+  seminars.sort((a, b) => a.start_date.getTime() - b.start_date.getTime());
+
+  // Find index of first upcoming seminar
+  const now = new Date();
+  const nextSeminarIndex = seminars.findIndex(
+    (seminar) => seminar.start_date > now,
+  );
+
+  // If all seminars are in the past, default to last seminar
+  const startIndex =
+    nextSeminarIndex === -1 ? seminars.length - 1 : nextSeminarIndex;
+
   return (
     <div className="mx-auto mt-6 flex w-full flex-col items-center justify-center space-y-4 lg:flex-row lg:space-x-4 lg:space-y-0">
       <div className="relative max-w-full">
-        <Carousel className="relative z-10 w-full rounded-2xl bg-brand px-4 py-6 text-white">
+        <Carousel
+          className="relative z-10 w-full rounded-2xl bg-brand px-4 py-6 text-white"
+          startIndex={startIndex}
+        >
           <CarouselPrevious />
 
           <CarouselContent>
@@ -40,9 +56,7 @@ export async function Seminars() {
                   <h4
                     className="mb-1.5 text-center text-xl font-medium"
                     dangerouslySetInnerHTML={{ __html: seminar.title }}
-                  >
-                    {/* {seminar.title} */}
-                  </h4>
+                  />
 
                   {seminar.description ? (
                     <p
@@ -50,7 +64,7 @@ export async function Seminars() {
                       dangerouslySetInnerHTML={{
                         __html: truncate(seminar.description, 300),
                       }}
-                    ></p>
+                    />
                   ) : null}
 
                   <div className="mt-4 pb-6 text-base font-semibold leading-snug">
@@ -69,8 +83,10 @@ export async function Seminars() {
               </CarouselItem>
             ))}
           </CarouselContent>
+
           <CarouselNext />
         </Carousel>
+
         <BlurredCircle />
       </div>
 

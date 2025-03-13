@@ -1,7 +1,7 @@
 import {
   EnvelopeIcon,
   MapPinIcon,
-  PhoneIcon,
+  // PhoneIcon,
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
@@ -107,10 +107,10 @@ export default async function UserPage(props: UserPageProps) {
                         <EnvelopeIcon className="size-5 shrink-0 opacity-60" />
                         <p className="ml-2">{member.acf.contact}</p>
                       </li>
-                      <li className="flex items-center text-sm">
+                      {/* <li className="flex items-center text-sm">
                         <PhoneIcon className="size-5 shrink-0 opacity-60" />
                         <p className="ml-2">{member.acf.contact}</p>
-                      </li>
+                      </li> */}
                     </ul>
                   </DependsOn>
 
