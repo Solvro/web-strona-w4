@@ -72,30 +72,46 @@ export function Navbar() {
         <NavigationMenu className="hidden sm:flex">
           <NavigationMenuList>
             <NavigationMenuItem>
-              <Link href="/#education" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Education
-                </NavigationMenuLink>
-              </Link>
+              <NavigationMenuLink
+                href="https://kam.pwr.edu.pl/pracownicy/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={navigationMenuTriggerStyle()}
+              >
+                Education
+              </NavigationMenuLink>
             </NavigationMenuItem>
 
             <NavigationMenuItem>
               <NavigationMenuTrigger>Department</NavigationMenuTrigger>
               <NavigationMenuContent>
-                <ul className="grid w-[400px] max-w-full gap-3 p-4 md:w-[500px] md:grid-cols-2">
+                <ul className="grid w-[400px] max-w-full grid-cols-1 gap-3 p-4 md:w-[300px]">
                   <NavigationMenuLink
-                    href="https://wit.pwr.edu.pl"
+                    href="https://kam.pwr.edu.pl/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                   >
                     Department&apos;s website
                   </NavigationMenuLink>
-                  <Link href="/#our-team" legacyBehavior passHref>
-                    <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                      Our Team
-                    </NavigationMenuLink>
-                  </Link>
+
+                  <NavigationMenuLink
+                    href="https://wit.pwr.edu.pl/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                  >
+                    Faculty
+                  </NavigationMenuLink>
+
+                  <NavigationMenuLink
+                    href="https://pwr.edu.pl/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                  >
+                    University
+                  </NavigationMenuLink>
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
@@ -113,6 +129,7 @@ export function Navbar() {
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
+
         <Sheet>
           <div className="flex flex-row justify-end space-x-2 sm:hidden">
             <ThemeSwitch />
@@ -127,16 +144,16 @@ export function Navbar() {
             <SheetHeader>
               <SheetTitle>
                 <Image
-                  src="/wit-logo.svg"
+                  src="/CPSG_cropped.svg"
                   width={200}
                   height={200}
                   alt="Emblem of Wroclaw University of Science and Technology WIT"
-                  className="h-auto w-12"
+                  className="h-auto w-32"
                 />
               </SheetTitle>
               <SheetDescription className="pt-6 dark:text-white">
                 <Link
-                  href="/#education"
+                  href="https://kam.pwr.edu.pl/pracownicy/"
                   className="block px-2 py-1 text-left font-medium text-neutral-900 hover:opacity-90"
                 >
                   Education
@@ -145,19 +162,31 @@ export function Navbar() {
                   <span className="mb-1 block">Department</span>
                   <ul className="ml-4 border-b">
                     <a
-                      href="https://wit.pwr.edu.pl"
+                      href="https://kam.pwr.edu.pl/"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="block py-1 text-sm font-normal text-neutral-800 hover:opacity-90"
                     >
                       Department&apos;s website
                     </a>
-                    <Link
-                      href="/#our-team"
+
+                    <a
+                      href="https://wit.pwr.edu.pl/"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="block py-1 text-sm font-normal text-neutral-800 hover:opacity-90"
                     >
-                      Our Team
-                    </Link>
+                      Faculty
+                    </a>
+
+                    <a
+                      href="https://pwr.edu.pl/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block py-1 text-sm font-normal text-neutral-800 hover:opacity-90"
+                    >
+                      University
+                    </a>
                   </ul>
                 </div>
                 <Link
