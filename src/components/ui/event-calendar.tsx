@@ -1,7 +1,7 @@
 "use client";
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import * as React from "react";
+import { useEffect, useState } from "react";
 import { DayPicker } from "react-day-picker";
 
 import { buttonVariants } from "@/components/ui/button";
@@ -10,6 +10,12 @@ import { cn } from "@/lib/utils";
 export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 
 function EventCalendar({ className, classNames, ...props }: CalendarProps) {
+  const [today, setToday] = useState<Date | null>(null);
+
+  useEffect(() => {
+    setToday(new Date()); // Ensures the date updates on the client side
+  }, []);
+
   return (
     <DayPicker
       className={cn("p-3", className)}
@@ -56,6 +62,7 @@ function EventCalendar({ className, classNames, ...props }: CalendarProps) {
         IconLeft: () => <ChevronLeft className="h-4 w-4" />,
         IconRight: () => <ChevronRight className="h-4 w-4" />,
       }}
+      today={today ?? undefined} // Ensure today updates dynamically
       {...props}
     />
   );
