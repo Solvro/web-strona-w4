@@ -1,13 +1,25 @@
 import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
 import { ScrollDown } from "@/components/scroll-down";
+import { env } from "@/env";
+import { Seminar } from "@/types";
 
 import { Contact } from "./contact";
 import { OurTeam } from "./our-team";
 import { ResearchFocus } from "./research-focus";
-import { Seminars } from "./seminars";
+import { SeminarsContainer } from "./seminars-container";
 
-export default function Home() {
+export default async function Home() {
+  const response = await fetch(
+    `${env.API_EVENTS_URL}?start_date=${(new Date().getFullYear() - 1).toString()}`,
+  );
+
+  const json = (await response.json()) as { events: Seminar[] };
+  const seminars: Seminar[] = json.events.map((seminar: Seminar) => ({
+    ...seminar,
+    start_date: new Date(seminar.start_date),
+  }));
+
   return (
     <>
       <Navbar />
@@ -27,7 +39,7 @@ export default function Home() {
             </p>
           </div>
 
-          <Seminars />
+          <SeminarsContainer seminars={seminars} />
         </div>
 
         <OurTeam />
