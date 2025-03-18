@@ -2,7 +2,7 @@
 
 import { useWindowSize } from "usehooks-ts";
 
-import { type CarouselApi } from "@/components/ui/carousel";
+import type { CarouselApi } from "@/components/ui/carousel";
 import { EventCalendar } from "@/components/ui/event-calendar";
 import type { Seminar } from "@/types";
 
@@ -30,7 +30,9 @@ export function SeminarCalendar({
             day.toLocaleDateString(),
         );
 
-        if (index !== -1 && carouselApi) carouselApi.scrollTo(index);
+        if (index !== -1 && carouselApi != null) {
+          carouselApi.scrollTo(index);
+        }
       }}
     />
   );

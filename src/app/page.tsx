@@ -2,7 +2,7 @@ import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
 import { ScrollDown } from "@/components/scroll-down";
 import { env } from "@/env";
-import { Seminar } from "@/types";
+import type { Seminar } from "@/types";
 
 import { Contact } from "./contact";
 import { OurTeam } from "./our-team";
