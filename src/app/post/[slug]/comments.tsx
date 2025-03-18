@@ -60,9 +60,7 @@ function Comment({
           width={100}
           height={100}
         />
-        <span className="font-bold">
-          {comment.author === 0 ? "Anonymous" : comment.author_name}
-        </span>
+        <span className="font-bold">{comment.author_name}</span>
         <span className="ml-2 text-sm text-muted-foreground">
           {new Date(comment.date).toLocaleDateString()}
         </span>

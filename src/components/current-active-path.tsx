@@ -47,7 +47,11 @@ export function CurrentActivePath({
                 </BreadcrumbLink>
               ) : (
                 <BreadcrumbPage>
-                  {typeof part === "string" ? part : part.name}
+                  {typeof part === "string" ? (
+                    <span dangerouslySetInnerHTML={{ __html: part }}></span>
+                  ) : (
+                    part.name
+                  )}
                 </BreadcrumbPage>
               )}
             </BreadcrumbItem>

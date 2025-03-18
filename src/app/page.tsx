@@ -9,6 +9,8 @@ import { OurTeam } from "./our-team";
 import { ResearchFocus } from "./research-focus";
 import { SeminarsContainer } from "./seminars-container";
 
+export const revalidate = 3600;
+
 export default async function Home() {
   const response = await fetch(
     `${env.API_EVENTS_URL}?start_date=${(new Date().getFullYear() - 1).toString()}`,
