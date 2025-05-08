@@ -33,12 +33,12 @@ export default async function Home() {
               Cyber-physical Systems Group
             </h1>
 
-            <p className="mt-3">
+            {/* <p className="mt-3">
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias
               natus quos minus esse necessitatibus deserunt tempora voluptate
               possimus sapiente commodi asperiores similique, aspernatur iusto
               earum, pariatur quis dolores id porro.
-            </p>
+            </p> */}
           </div>
 
           <SeminarsContainer seminars={seminars} />
