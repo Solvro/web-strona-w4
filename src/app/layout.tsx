@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { ReCaptchaProvider } from "next-recaptcha-v3";
 import { Poppins, Roboto } from "next/font/google";
 
 import { ThemeProvider } from "@/components/theme-switch";
+import { env } from "@/env";
 
 import "./globals.css";
 
@@ -30,14 +32,16 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${roboto.className} ${poppins.variable} antialiased`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <div className="w-full overflow-x-hidden">{children}</div>
-        </ThemeProvider>
+        <ReCaptchaProvider reCaptchaKey={env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <div className="w-full overflow-x-hidden">{children}</div>
+          </ThemeProvider>
+        </ReCaptchaProvider>
       </body>
     </html>
   );

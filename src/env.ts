@@ -7,9 +7,11 @@ export const env = createEnv({
     API_EVENTS_URL: z.string().url(),
     API_POSTS_URL: z.string().url(),
     API_COMMENTS_URL: z.string().url(),
+    CAPTCHA_SECRET_KEY: z.string(),
   },
   client: {
     NEXT_PUBLIC_API: z.string().url(),
+    NEXT_PUBLIC_CAPTCHA_SITE_KEY: z.string(),
   },
 
   runtimeEnv: {
@@ -18,5 +20,7 @@ export const env = createEnv({
     API_POSTS_URL: process.env.API_POSTS_URL,
     API_COMMENTS_URL: process.env.API_COMMENTS_URL,
     NEXT_PUBLIC_API: process.env.NEXT_PUBLIC_API,
+    NEXT_PUBLIC_CAPTCHA_SITE_KEY: process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY,
+    CAPTCHA_SECRET_KEY: process.env.CAPTCHA_SECRET_KEY,
   },
 });

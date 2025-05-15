@@ -1,34 +1,42 @@
 "use client";
 
 import { Frown, Smile } from "lucide-react";
+import { useReCaptcha } from "next-recaptcha-v3";
 import type { FormEvent } from "react";
 import { useState } from "react";
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { env } from "@/env";
+
+import { submitComment } from "./comment-action";
 
 export function CommentForm({ postId }: { postId: number }) {
   const [submitted, setSubmitted] = useState(false);
+  const { executeRecaptcha } = useReCaptcha();
   const [error, setError] = useState<string | null>(null);
 
   async function handleComment(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
+    if (submitted) {
+      return;
+    }
+
+    setError(null);
+
     const form = event.currentTarget;
     const formData = new FormData(form);
 
-    const response = await fetch(`${env.NEXT_PUBLIC_API}/comments`, {
-      method: "POST",
-      body: formData,
-    });
-    if (response.ok) {
+    const token = await executeRecaptcha("submit_comment");
+    formData.append("token", token);
+
+    try {
+      await submitComment(formData);
       setSubmitted(true);
-      return;
+    } catch (formError) {
+      setError(
+        (formError as string) || "An error occurred. Please try again later.",
+      );
     }
-    //eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const data = await response.json();
-    //eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-argument, @typescript-eslint/strict-boolean-expressions
-    setError(data.message || "An error occurred. Please try again later.");
   }
 
   if (submitted) {
