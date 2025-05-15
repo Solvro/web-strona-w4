@@ -1,3 +1,4 @@
+import { ReCaptchaProvider } from "next-recaptcha-v3";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -26,7 +27,7 @@ export default async function PostPage(props: UserPageProps) {
   const comments = post._embedded.replies?.flat() ?? [];
 
   return (
-    <>
+    <ReCaptchaProvider reCaptchaKey={env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}>
       <Navbar />
 
       <main className="mx-auto w-full max-w-screen-xl px-4 pb-32 pt-6">
@@ -68,7 +69,7 @@ export default async function PostPage(props: UserPageProps) {
       </main>
 
       <Footer />
-    </>
+    </ReCaptchaProvider>
   );
 }
 
